@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:myapp/page-1/galleryPage.dart';
@@ -114,12 +116,15 @@ import 'package:flutter/services.dart';
   flutter pub remove flutter_native_splash
 */
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,
     overlays: SystemUiOverlay.values,
   );
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
