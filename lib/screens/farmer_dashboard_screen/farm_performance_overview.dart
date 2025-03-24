@@ -4,6 +4,7 @@ import 'performance_graph.dart';
 import 'data_input_form.dart';
 import 'performance_data.dart';
 import 'spending/total_spending_screen.dart';
+import 'earning/total_earning_screen.dart';
 
 
 class FarmPerformanceOverview extends StatefulWidget {
@@ -194,7 +195,7 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
   }
 
   void _navigateToEarningsDetails() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalEarningScreen()));
   }
 
   void _navigateToLoansDetails() {
