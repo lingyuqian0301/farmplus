@@ -15,79 +15,82 @@ class DataInputForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFFF6),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x14000000),
-            blurRadius: 8,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Enter Monthly Data',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF334155),
+    return Material(  // Add this Material widget
+      color: Colors.transparent,  // Make it transparent to keep your original styling
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFFF6),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x14000000),
+              blurRadius: 8,
+              offset: Offset(0, 2),
             ),
-          ),
-          const SizedBox(height: 16),
-          TextField(
-            controller: earningsController,
-            decoration: const InputDecoration(
-              labelText: 'Earnings (\$)',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.attach_money),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Enter Monthly Data',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF334155),
+              ),
             ),
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
-            ],
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: spendingController,
-            decoration: const InputDecoration(
-              labelText: 'Spending (\$)',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.money_off),
+            const SizedBox(height: 16),
+            TextField(
+              controller: earningsController,
+              decoration: const InputDecoration(
+                labelText: 'Earnings (\$)',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.attach_money),
+              ),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+              ],
             ),
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                final earnings = double.tryParse(earningsController.text) ?? 0;
-                final spending = double.tryParse(spendingController.text) ?? 0;
-                onDataSubmitted(earnings, spending);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4CAF50),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+            const SizedBox(height: 12),
+            TextField(
+              controller: spendingController,
+              decoration: const InputDecoration(
+                labelText: 'Spending (\$)',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.money_off),
+              ),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  final earnings = double.tryParse(earningsController.text) ?? 0;
+                  final spending = double.tryParse(spendingController.text) ?? 0;
+                  onDataSubmitted(earnings, spending);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF4CAF50),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Update Graph',
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
-              child: const Text(
-                'Update Graph',
-                style: TextStyle(fontSize: 16),
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

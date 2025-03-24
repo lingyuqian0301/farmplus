@@ -3,6 +3,8 @@ import 'performance_stat_card.dart';
 import 'performance_graph.dart';
 import 'data_input_form.dart';
 import 'performance_data.dart';
+import 'spending/total_spending_screen.dart';
+
 
 class FarmPerformanceOverview extends StatefulWidget {
   const FarmPerformanceOverview({Key? key}) : super(key: key);
@@ -86,79 +88,117 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Color(0xFFFFFFF6), Color(0xFFFFFFF6)],
-                    ),
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x14000000),
-                        blurRadius: 8,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      const PerformanceStatCard(
-                        title: 'Total Yield',
-                        value: '2,850',
-                        subtitle: 'tons',
-                      ),
-                      const SizedBox(height: 16),
-                      PerformanceStatCard(
-                        title: 'Total Spending',
-                        value: '\$${_totalSpending.toStringAsFixed(0)}',
-                        subtitle: 'this month',
-                      ),
-                      const SizedBox(height: 16),
-                      PerformanceStatCard(
-                        title: 'Total Earnings',
-                        value: '\$${_totalEarnings.toStringAsFixed(0)}',
-                        subtitle: 'this month',
-                      ),
-                      const SizedBox(height: 16),
-                      const PerformanceStatCard(
-                        title: 'Active Loans',
-                        value: '\$8,500',
-                        subtitle: 'outstanding',
-                      ),
-                    ],
-                  ),
-                ),
+                // Stats Container
+                _buildStatsContainer(),
                 const SizedBox(height: 24),
+                // Data Input Form
                 DataInputForm(
                   onDataSubmitted: _onDataSubmitted,
                   earningsController: _earningsController,
                   spendingController: _spendingController,
                 ),
                 const SizedBox(height: 24),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFFFF6),
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x14000000),
-                        blurRadius: 8,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: PerformanceGraph(data: _performanceData),
-                ),
+                // Graph Container
+                _buildGraphContainer(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildStatsContainer() {
+    return Container(
+      width: double.infinity, // Make full width
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFFFFFF6), Color(0xFFFFFFF6)],
+        ),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Total Yield (Clickable)
+          PerformanceStatCard(
+            title: 'Total Yield',
+            value: '2,850',
+            subtitle: 'tons',
+            onTap: () => _navigateToYieldDetails(),
+          ),
+          const SizedBox(height: 16),
+          // Total Spending (Clickable)
+          PerformanceStatCard(
+            title: 'Total Spending',
+            value: '\$${_totalSpending.toStringAsFixed(0)}',
+            subtitle: 'this month',
+            onTap: () => _navigateToSpendingDetails(),
+          ),
+          const SizedBox(height: 16),
+          // Total Earnings (Clickable)
+          PerformanceStatCard(
+            title: 'Total Earnings',
+            value: '\$${_totalEarnings.toStringAsFixed(0)}',
+            subtitle: 'this month',
+            onTap: () => _navigateToEarningsDetails(),
+          ),
+          const SizedBox(height: 16),
+          // Active Loans (Clickable)
+          PerformanceStatCard(
+            title: 'Active Loans',
+            value: '\$8,500',
+            subtitle: 'outstanding',
+            onTap: () => _navigateToLoansDetails(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGraphContainer() {
+    return Container(
+      width: double.infinity, // Match stats container width
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFFFF6),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: PerformanceGraph(data: _performanceData),
+    );
+  }
+
+  // Navigation placeholders
+  void _navigateToYieldDetails() {
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => YieldDetailsScreen()));
+  }
+
+  void _navigateToSpendingDetails() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
+  }
+
+  void _navigateToEarningsDetails() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
+  }
+
+  void _navigateToLoansDetails() {
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => LoansDetailsScreen()));
   }
 
   @override
