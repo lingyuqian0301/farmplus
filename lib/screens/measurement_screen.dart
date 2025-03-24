@@ -8,6 +8,8 @@ class MeasurementsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSmallScreen = MediaQuery.of(context).size.width <= 640;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -25,7 +27,7 @@ class MeasurementsScreen extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width > 640 ? 24 : 16,
+              horizontal: isSmallScreen ? 16 : 24,
               vertical: 24,
             ),
             child: CustomScrollView(
@@ -33,7 +35,7 @@ class MeasurementsScreen extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
-                      _buildHeader(),
+                      _buildHeader(context),
                       const SizedBox(height: 24),
                       _buildMeasurements(),
                     ],
@@ -47,159 +49,158 @@ class MeasurementsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Current Measurements',
-          style: TextStyle(
-            color: AppColors.primaryText,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Inter',
-          ),
-        ),
-        Row(
-          children: [
-            const StatusIndicator(
-              color: AppColors.liveIndicator,
-              label: 'Live Data',
-            ),
-            const SizedBox(width: 16),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.refreshButton,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              child: const Text(
-                'Refresh Data',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontFamily: 'Inter',
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  /// 1) Responsive Header:
+  ///    - On small screens, places "Current Measurements" on top,
+  ///      then "Live Data" + "Refresh" in a row below.
+  ///    - On larger screens, places everything in a single row.
+  Widget _buildHeader(BuildContext context) {
+    final isSmallScreen = MediaQuery.of(context).size.width <= 640;
 
-  Widget _buildMeasurements() {
-    return Column(
-      children: [
-        const MeasurementCard(
-          title: 'Soil Moisture',
-          value: '68%',
-          status: 'Optimal Range',
-        ),
-        const SizedBox(height: 24),
-        const MeasurementCard(
-          title: 'Temperature',
-          value: '71°F',
-          status: 'Normal',
-        ),
-        const SizedBox(height: 24),
-        const MeasurementCard(
-          title: 'Soil pH',
-          value: '6.7',
-          status: 'Slightly Acidic',
-        ),
-        const SizedBox(height: 24),
-        const MeasurementCard(
-          title: 'Nitrogen Level',
-          value: '88%',
-          status: 'Monitor',
-        ),
-        const SizedBox(height: 24),
-        _buildWeatherForecast(),
-        const SizedBox(height: 24),
-        _buildAlertsNotifications(),
-        const SizedBox(height: 24),
-        _buildTrendAnalysis(),
-        const SizedBox(height: 24),
-        _buildRecommendations(),
-        const SizedBox(height: 24),
-        _buildHomeIcon(),
-      ],
-    );
-  }
-
-  Widget _buildWeatherForecast() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            offset: const Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: Column(
+    if (isSmallScreen) {
+      // Small Screen Layout: Column for title + row of indicators/buttons
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Weather Forecast',
+            'Current Measurements',
             style: TextStyle(
-              color: AppColors.darkText,
-              fontSize: 18,
+              color: AppColors.primaryText,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
               fontFamily: 'Inter',
             ),
           ),
-          const SizedBox(height: 16),
-          Container(
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const StatusIndicator(
+                color: AppColors.liveIndicator,
+                label: 'Live Data',
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.refreshButton,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                child: const Text(
+                  'Refresh Data',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    } else {
+      // Larger Screen Layout: Single Row
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Current Measurements',
+            style: TextStyle(
+              color: AppColors.primaryText,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Inter',
+            ),
+          ),
+          Row(
+            children: [
+              const StatusIndicator(
+                color: AppColors.liveIndicator,
+                label: 'Live Data',
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.refreshButton,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                child: const Text(
+                  'Refresh Data',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+  }
+
+  /// 2) 2×2 Grid of Measurement Cards + Remaining Cards
+  Widget _buildMeasurements() {
+    return Column(
+      children: [
+        // A 2×2 grid for the four measurement cards
+        GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 24,
+          mainAxisSpacing: 24,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [
+            MeasurementCard(
+              title: 'Soil Moisture',
+              value: '68%',
+              status: 'Optimal Range',
+            ),
+            MeasurementCard(
+              title: 'Temperature',
+              value: '71°F',
+              status: 'Normal',
+            ),
+            MeasurementCard(
+              title: 'Soil pH',
+              value: '6.7',
+              status: 'Slightly Acidic',
+            ),
+            MeasurementCard(
+              title: 'Nitrogen Level',
+              value: '88%',
+              status: 'Monitor',
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+
+        // The rest of your cards below the 2×2 grid
+        _buildStandardCard(
+          title: 'Weather Forecast',
+          child: Container(
             height: 40,
             decoration: BoxDecoration(
               color: AppColors.placeholderGrey,
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAlertsNotifications() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            offset: const Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Alerts & Notifications',
-            style: TextStyle(
-              color: AppColors.darkText,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Inter',
-            ),
-          ),
-          const SizedBox(height: 16),
-          Container(
+        ),
+        const SizedBox(height: 24),
+        _buildStandardCard(
+          title: 'Alerts & Notifications',
+          child: Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppColors.placeholderGrey,
@@ -218,52 +219,44 @@ class MeasurementsScreen extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTrendAnalysis() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            offset: const Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Trend Analysis',
-            style: TextStyle(
-              color: AppColors.darkText,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Inter',
-            ),
-          ),
-          const SizedBox(height: 16),
-          Container(
+        ),
+        const SizedBox(height: 24),
+        _buildStandardCard(
+          title: 'Trend Analysis',
+          child: Container(
             height: 300,
             decoration: BoxDecoration(
               color: AppColors.placeholderGrey,
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 24),
+        _buildStandardCard(
+          title: 'Recommendations',
+          child: Column(
+            children: [
+              _buildRecommendationItem(
+                'Irrigation Schedule',
+                'Reduce watering by 20% - soil moisture optimal',
+              ),
+              const SizedBox(height: 16),
+              _buildRecommendationItem(
+                'Planting Advisory',
+                'Ideal conditions for winter wheat seeding',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 24),
+        _buildHomeIcon(),
+      ],
     );
   }
 
-  Widget _buildRecommendations() {
+  Widget _buildStandardCard({required String title, required Widget child}) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
@@ -278,10 +271,11 @@ class MeasurementsScreen extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'Recommendations',
-            style: TextStyle(
+          Text(
+            title,
+            style: const TextStyle(
               color: AppColors.darkText,
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -289,15 +283,7 @@ class MeasurementsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          _buildRecommendationItem(
-            'Irrigation Schedule',
-            'Reduce watering by 20% - soil moisture optimal',
-          ),
-          const SizedBox(height: 16),
-          _buildRecommendationItem(
-            'Planting Advisory',
-            'Ideal conditions for winter wheat seeding',
-          ),
+          child,
         ],
       ),
     );
@@ -305,6 +291,7 @@ class MeasurementsScreen extends StatelessWidget {
 
   Widget _buildRecommendationItem(String title, String description) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.placeholderGrey,
