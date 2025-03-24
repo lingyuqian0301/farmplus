@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_item.dart';
+import 'measurement_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,8 +20,8 @@ class HomeScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             stops: [0.196, 0.451],
             colors: [
-              Color(0xFFFFFCD8),
-              Color(0xFFCBEFD1),
+              Color(0xFFFFFCD8), // Light yellow
+              Color(0xFFCBEFD1), // Light green
             ],
           ),
         ),
@@ -32,6 +33,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 155),
+                    // Farmer Image
                     Image.asset(
                       'assets/screen/homepage-farmer.png',
                       width: isSmallScreen
@@ -42,42 +44,62 @@ class HomeScreen extends StatelessWidget {
                           : (isMediumScreen ? 250 : 296),
                     ),
                     const SizedBox(height: 48),
+                    // Menu Items
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: isSmallScreen ? 24 : 48,
                       ),
                       child: Column(
-                        children: const [
+                        children: [
                           MenuItem(
                             title: 'Crop Analysis',
                             fontSize: 21,
+                            onTap: () {
+                              // TODO: Navigate to Crop Analysis screen if you have it
+                            },
                           ),
-                          SizedBox(height: 14),
+                          const SizedBox(height: 14),
                           MenuItem(
                             title: 'Measurement',
                             fontSize: 20,
+                            onTap: () {
+                              // Navigate to MeasurementsScreen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MeasurementsScreen(),
+                                ),
+                              );
+                            },
                           ),
-                          SizedBox(height: 14),
+                          const SizedBox(height: 14),
                           MenuItem(
                             title: 'Dashboard',
                             fontSize: 20,
+                            onTap: () {
+                              // TODO: Navigate to Dashboard screen
+                            },
                           ),
-                          SizedBox(height: 14),
+                          const SizedBox(height: 14),
                           MenuItem(
                             title: 'Financial Hub',
                             fontSize: 20,
+                            onTap: () {
+                              // TODO: Navigate to Financial Hub screen
+                            },
                           ),
-                          SizedBox(height: 14),
+                          const SizedBox(height: 14),
                           MenuItem(
                             title: 'Knowledge Hub',
                             fontSize: 20,
+                            onTap: () {
+                              // TODO: Navigate to Knowledge Hub screen
+                            },
                           ),
                         ],
                       ),
                     ),
-                    // Remove Spacer, replace with a simple gap:
                     const SizedBox(height: 24),
-                    // const CustomBottomBar(),
                   ],
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/measurement_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(), // Add this route
         '/homepage': (context) => const HomeScreen(), // Add this route
+        '/measurement': (context) => const MeasurementsScreen(), // Add this route
       },
     );
   }
