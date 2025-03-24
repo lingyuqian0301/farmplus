@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'custom_input_field.dart';
 import 'social_login_button.dart';
-import 'home_screen.dart'; // Add your HomeScreen import
+import '../homescreen/home_screen.dart'; // Add your HomeScreen import
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

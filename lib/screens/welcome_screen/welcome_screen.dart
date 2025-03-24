@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'auth_button.dart';
-import '../theme/app_colors.dart';
-import 'login_screen.dart';
+import '../../theme/app_colors.dart';
+import '../login_screen/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

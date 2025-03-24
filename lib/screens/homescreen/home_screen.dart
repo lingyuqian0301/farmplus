@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'menu_item.dart';
-import 'measurement_screen.dart';
+import '../measurement_screen/measurement_screen.dart';
+import '../farmer_dashboard_screen/farm_performance_overview.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -77,7 +78,12 @@ class HomeScreen extends StatelessWidget {
                             title: 'Dashboard',
                             fontSize: 20,
                             onTap: () {
-                              // TODO: Navigate to Dashboard screen
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const FarmPerformanceOverview(),
+                                ),
+                              );
                             },
                           ),
                           const SizedBox(height: 14),

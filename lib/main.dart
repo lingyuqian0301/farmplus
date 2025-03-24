@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Use relative path to screens directory
-import 'screens/welcome_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/home_screen.dart';
-import 'screens/measurement_screen.dart';
+import 'screens/welcome_screen/welcome_screen.dart';
+import 'screens/login_screen/login_screen.dart';
+import 'screens/homescreen/home_screen.dart';
+import 'screens/measurement_screen/measurement_screen.dart';
+import 'screens/farmer_dashboard_screen/farm_performance_overview.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(), // Add this route
         '/homepage': (context) => const HomeScreen(), // Add this route
         '/measurement': (context) => const MeasurementsScreen(), // Add this route
+        '/farm-dashboard': (context) => const FarmPerformanceOverview(), // Add this route
       },
     );
   }
