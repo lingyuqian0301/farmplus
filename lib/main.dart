@@ -7,6 +7,7 @@ import 'screens/login_screen/login_screen.dart';
 import 'screens/homescreen/home_screen.dart';
 import 'screens/measurement_screen/measurement_screen.dart';
 import 'screens/farmer_dashboard_screen/farm_performance_overview.dart';
+import 'screens/farmer_dashboard_screen/calendar/calendar_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/homepage': (context) => const HomeScreen(), // Add this route
         '/measurement': (context) => const MeasurementsScreen(), // Add this route
         '/farm-dashboard': (context) => const FarmPerformanceOverview(), // Add this route
+        '/calendar': (context) => const CalendarPage(), // Add this route
       },
     );
   }
