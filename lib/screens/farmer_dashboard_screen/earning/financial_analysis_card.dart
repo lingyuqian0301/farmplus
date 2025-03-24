@@ -7,8 +7,11 @@ class FinancialAnalysisCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMediumScreen = screenWidth > 640;
+
     return Container(
-      padding: EdgeInsets.all(MediaQuery.of(context).size.width > 991 ? 24 : 16),
+      padding: EdgeInsets.all(screenWidth > 991 ? 24 : 16),
       decoration: BoxDecoration(
         color: const Color(0xFFFFFFF6),
         borderRadius: BorderRadius.circular(12),
@@ -22,44 +25,36 @@ class FinancialAnalysisCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Crop Financial Analysis',
-                style: GoogleFonts.inter(
-                  fontSize: MediaQuery.of(context).size.width > 640 ? 20 : 18,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xFF334155),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFDCE1E6),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: const EdgeInsets.all(4),
-                child: Row(
-                  children: [
-                    _PeriodButton(
-                      label: 'Month',
-                      isSelected: true,
-                    ),
-                    _PeriodButton(
-                      label: 'Year',
-                      isSelected: false,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // 1) Header text only
+          _buildHeaderText(isMediumScreen),
           const SizedBox(height: 24),
-          SizedBox(
-            height: 300,
-            width: 300,
-            child: SvgPicture.string(
-              '''<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          // 2) Chart
+          _buildResponsiveChart(),
+          const SizedBox(height: 24),
+          // 3) Period Selector is now BELOW the chart
+          _buildPeriodSelector(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHeaderText(bool isMediumScreen) {
+    return Text(
+      'Crop Financial Analysis',
+      style: GoogleFonts.inter(
+        fontSize: isMediumScreen ? 20 : 18,
+        fontWeight: FontWeight.w700,
+        color: const Color(0xFF334155),
+      ),
+      textAlign: TextAlign.left,
+    );
+  }
+
+  Widget _buildResponsiveChart() {
+    return AspectRatio(
+      aspectRatio: 1, // Keeps it square
+      child: SvgPicture.string(
+                      '''<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_101_326)">
                   <path d="M150 50C167.553 50.0004 184.797 54.6213 199.999 63.3981C215.2 72.1749 227.823 84.7985 236.6 100L150 150V50Z" fill="#4318D1"/>
                   <path d="M236.6 100C245.377 115.202 249.997 132.446 249.997 150C249.997 167.554 245.377 184.798 236.6 200L150 150L236.6 100Z" fill="#FFB800"/>
@@ -80,8 +75,24 @@ class FinancialAnalysisCard extends StatelessWidget {
                   </clipPath>
                 </defs>
               </svg>''',
-            ),
-          ),
+      ),
+    );
+  }
+
+  /// The Month/Year buttons now appear BELOW the chart.
+  Widget _buildPeriodSelector() {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFFDCE1E6),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(4),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          _PeriodButton(label: 'Month', isSelected: true),
+          SizedBox(width: 4),
+          _PeriodButton(label: 'Year', isSelected: false),
         ],
       ),
     );
@@ -100,17 +111,28 @@ class _PeriodButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 80),
+      child: Material(
         color: isSelected ? Colors.white : Colors.transparent,
         borderRadius: BorderRadius.circular(4),
-      ),
-      child: Text(
-        label,
-        style: GoogleFonts.inter(
-          fontSize: 14,
-          color: const Color(0xFF334155),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(4),
+          onTap: () {
+            // Add your tap logic here
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            alignment: Alignment.center,
+            child: Text(
+              label,
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                color: const Color(0xFF334155),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
     );
