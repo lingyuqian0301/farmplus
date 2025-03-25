@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/navbar.dart';
 import 'measurement_color.dart';
 import 'measurement_card.dart';
 import 'status_indicator.dart';
@@ -45,6 +46,7 @@ class MeasurementsScreen extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: const Navbar(index: 1),
       ),
     );
   }
@@ -166,21 +168,25 @@ class MeasurementsScreen extends StatelessWidget {
               title: 'Soil Moisture',
               value: '68%',
               status: 'Optimal Range',
+              icon: Icons.water_drop,
             ),
             MeasurementCard(
               title: 'Temperature',
               value: '71°F',
               status: 'Normal',
+              icon: Icons.thermostat,
             ),
             MeasurementCard(
               title: 'Soil pH',
               value: '6.7',
               status: 'Slightly Acidic',
+              icon: Icons.science,
             ),
             MeasurementCard(
               title: 'Nitrogen Level',
               value: '88%',
               status: 'Monitor',
+              icon: Icons.eco,
             ),
           ],
         ),
@@ -216,6 +222,7 @@ class MeasurementsScreen extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                 ),
+                const SizedBox(width: 8),
               ],
             ),
           ),
@@ -248,8 +255,6 @@ class MeasurementsScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 24),
-        _buildHomeIcon(),
       ],
     );
   }
@@ -318,16 +323,6 @@ class MeasurementsScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildHomeIcon() {
-    return Center(
-      child: Icon(
-        Icons.home_outlined,
-        size: 24,
-        color: Colors.grey[600],
       ),
     );
   }

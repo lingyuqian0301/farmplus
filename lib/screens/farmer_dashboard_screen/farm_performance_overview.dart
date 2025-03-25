@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/navbar.dart';
 import 'performance_stat_card.dart';
 import 'performance_graph.dart';
 import 'data_input_form.dart';
 import 'performance_data.dart';
 import 'spending/total_spending_screen.dart';
 import 'earning/total_earning_screen.dart';
-
 
 class FarmPerformanceOverview extends StatefulWidget {
   const FarmPerformanceOverview({Key? key}) : super(key: key);
@@ -58,50 +58,53 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [0.196, 0.451],
-          colors: [
-            Color(0xFFFFFCD8),
-            Color(0xFFCBEFD1),
-          ],
+    return Scaffold(
+      bottomNavigationBar: const Navbar(index: 1), // Add the Navbar here
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.196, 0.451],
+            colors: [
+              Color(0xFFFFFCD8),
+              Color(0xFFCBEFD1),
+            ],
+          ),
         ),
-      ),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 476),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Farm Performance Overview',
-                  style: TextStyle(
-                    color: Color(0xFF010102),
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    height: 1.125,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 476),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Farm Performance Overview',
+                    style: TextStyle(
+                      color: Color(0xFF010102),
+                      fontSize: 32,
+                      fontWeight: FontWeight.w700,
+                      height: 1.125,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                // Stats Container
-                _buildStatsContainer(),
-                const SizedBox(height: 24),
-                // Data Input Form
-                DataInputForm(
-                  onDataSubmitted: _onDataSubmitted,
-                  earningsController: _earningsController,
-                  spendingController: _spendingController,
-                ),
-                const SizedBox(height: 24),
-                // Graph Container
-                _buildGraphContainer(),
-              ],
+                  const SizedBox(height: 16),
+                  // Stats Container
+                  _buildStatsContainer(),
+                  const SizedBox(height: 24),
+                  // Data Input Form
+                  DataInputForm(
+                    onDataSubmitted: _onDataSubmitted,
+                    earningsController: _earningsController,
+                    spendingController: _spendingController,
+                  ),
+                  const SizedBox(height: 24),
+                  // Graph Container
+                  _buildGraphContainer(),
+                ],
+              ),
             ),
           ),
         ),
@@ -130,7 +133,6 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
       ),
       child: Column(
         children: [
-          // Total Yield (Clickable)
           PerformanceStatCard(
             title: 'Total Yield',
             value: '2,850',
@@ -138,7 +140,6 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
             onTap: () => _navigateToYieldDetails(),
           ),
           const SizedBox(height: 16),
-          // Total Spending (Clickable)
           PerformanceStatCard(
             title: 'Total Spending',
             value: '\$${_totalSpending.toStringAsFixed(0)}',
@@ -146,7 +147,6 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
             onTap: () => _navigateToSpendingDetails(),
           ),
           const SizedBox(height: 16),
-          // Total Earnings (Clickable)
           PerformanceStatCard(
             title: 'Total Earnings',
             value: '\$${_totalEarnings.toStringAsFixed(0)}',
@@ -154,7 +154,6 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
             onTap: () => _navigateToEarningsDetails(),
           ),
           const SizedBox(height: 16),
-          // Active Loans (Clickable)
           PerformanceStatCard(
             title: 'Active Loans',
             value: '\$8,500',
@@ -168,7 +167,7 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
 
   Widget _buildGraphContainer() {
     return Container(
-      width: double.infinity, // Match stats container width
+      width: double.infinity,
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: const Color(0xFFFFFFF6),
@@ -185,22 +184,14 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
     );
   }
 
-  // Navigation placeholders
-  void _navigateToYieldDetails() {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => YieldDetailsScreen()));
-  }
-
+  void _navigateToYieldDetails() {}
   void _navigateToSpendingDetails() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
   }
-
   void _navigateToEarningsDetails() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalEarningScreen()));
   }
-
-  void _navigateToLoansDetails() {
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => LoansDetailsScreen()));
-  }
+  void _navigateToLoansDetails() {}
 
   @override
   void dispose() {

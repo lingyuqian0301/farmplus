@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/navbar.dart';
 import 'crop.dart';
 import 'crop_list_items.dart';
 import 'crop_search_bar.dart';
@@ -107,6 +108,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
           ),
         ),
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 }

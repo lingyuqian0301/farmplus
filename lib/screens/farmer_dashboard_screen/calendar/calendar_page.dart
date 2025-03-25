@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/components/navbar.dart';
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -61,14 +62,7 @@ class _CalendarPageState extends State<CalendarPage> {
           ),
         ),
       ),
-      // Move the home icon to bottom navigation
-      bottomNavigationBar: Container(
-        color: Colors.transparent,
-        height: 60,
-        child: Center(
-          child: _buildHomeIcon(),
-        ),
-      ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 

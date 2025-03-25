@@ -6,14 +6,26 @@ class MeasurementCard extends StatelessWidget {
   final String value;
   final String status;
   final bool isLarge;
+  final IconData icon;
 
   const MeasurementCard({
     Key? key,
     required this.title,
     required this.value,
     required this.status,
+    required this.icon,  // Added icon parameter
     this.isLarge = false,
   }) : super(key: key);
+
+  Color _getStatusColor() {
+    if (status.toLowerCase().contains("optimal") || status.toLowerCase().contains("normal")) {
+      return Colors.green;
+    } else if (status.toLowerCase().contains("monitor")) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +45,20 @@ class MeasurementCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: AppColors.primaryText,
-              fontSize: isLarge ? 18 : 14,
-              fontWeight: isLarge ? FontWeight.bold : FontWeight.normal,
-              fontFamily: 'Inter',
-            ),
+          Row(
+            children: [
+              Icon(icon, size: 28, color: AppColors.primaryText), // Added icon
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: TextStyle(
+                  color: AppColors.primaryText,
+                  fontSize: isLarge ? 18 : 14,
+                  fontWeight: isLarge ? FontWeight.bold : FontWeight.normal,
+                  fontFamily: 'Inter',
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text(
@@ -55,8 +73,8 @@ class MeasurementCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             status,
-            style: const TextStyle(
-              color: AppColors.warningText,
+            style: TextStyle(
+              color: _getStatusColor(), // Dynamic status color
               fontSize: 14,
               fontFamily: 'Inter',
             ),

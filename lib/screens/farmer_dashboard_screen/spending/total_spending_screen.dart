@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/components/navbar.dart';
 import 'financial_analysis_card.dart';
 import 'crop_sources_card.dart';
 import 'spending_card.dart';
@@ -68,6 +69,7 @@ class TotalSpendingScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 }

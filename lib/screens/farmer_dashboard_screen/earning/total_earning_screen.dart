@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/components/navbar.dart';
 import 'financial_analysis_card.dart';
 import 'crop_sources_card.dart';
 import 'earning_card.dart';
@@ -77,6 +78,7 @@ class TotalEarningScreen extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 }

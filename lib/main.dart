@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:myapp/screens/crop_analysis.dart';
 
 // Use relative path to screens directory
 import 'screens/welcome_screen/welcome_screen.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(), // Add this route
         '/homepage': (context) => const HomeScreen(), // Add this route
+        '/analysis': (context) => const CropAnalysisPage(), // Add this route
         '/measurement': (context) => const MeasurementsScreen(), // Add this route
         '/farm-dashboard': (context) => const FarmPerformanceOverview(), // Add this route
         '/calendar': (context) => const CalendarPage(), // Add this route

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/navbar.dart';
 
 // Model to represent crop price information
 class CropPrice {
@@ -30,7 +31,7 @@ class FarmFinancialMarketPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Farm Financial Services'),
+        title: const Text('Farm Financial Services'),
         backgroundColor: Colors.green[100],
       ),
       body: Column(
@@ -41,7 +42,7 @@ class FarmFinancialMarketPrice extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search crops...',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -52,7 +53,7 @@ class FarmFinancialMarketPrice extends StatelessWidget {
           ),
           
           // Tabs for different sections
-          DefaultTabController(
+          const DefaultTabController(
             length: 4,
             child: TabBar(
               labelColor: Colors.black,
@@ -70,17 +71,17 @@ class FarmFinancialMarketPrice extends StatelessWidget {
             child: Container(
               color: Colors.green[50],
               child: ListView.builder(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 itemCount: cropPrices.length,
                 itemBuilder: (context, index) {
                   final crop = cropPrices[index];
                   return Card(
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     elevation: 2,
                     child: ListTile(
                       title: Text(
                         crop.name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       trailing: Text(
                         '\RM${crop.price} ${crop.unit}',
@@ -97,6 +98,7 @@ class FarmFinancialMarketPrice extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 }

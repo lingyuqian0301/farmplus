@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/navbar.dart';
 import 'content_card.dart';
 import 'community_screen.dart';
 import '../../theme/app_colors.dart';
@@ -77,6 +78,7 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 
