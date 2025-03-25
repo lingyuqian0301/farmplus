@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'custom_input_field.dart';
 import 'social_login_button.dart';
-import '../homescreen/home_screen.dart'; // Add your HomeScreen import
+import '../homescreen/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Tab Selector
+                  // Tab Selector (unchanged)
                   Stack(
                     children: [
                       Row(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                             onPressed: () => setState(() => isSignIn = true),
                             style: TextButton.styleFrom(
-                              backgroundColor: isSignIn ? const Color(0xFF4318D1) : Colors.transparent,
+                              backgroundColor: isSignIn ? const Color(0xFF69BD44) : Colors.transparent,
                               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                             onPressed: () => setState(() => isSignIn = false),
                             style: TextButton.styleFrom(
-                              backgroundColor: !isSignIn ? const Color(0xFF4318D1) : Colors.transparent,
+                              backgroundColor: !isSignIn ? const Color(0xFF69BD44) : Colors.transparent,
                               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -94,38 +94,37 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      Positioned(
-                        bottom: 0,
-                        left: isSignIn ? 0 : 60,
-                        child: Container(
-                          width: 51,
-                          height: 2,
-                          color: const Color(0xFF4318D1),
-                        ),
-                      ),
+                      // Positioned(
+                      //   bottom: 0,
+                      //   left: isSignIn ? 0 : 60,
+                      //   child: Container(
+                      //     width: 51,
+                      //     height: 2,
+                      //     color: const Color(0xFF4318D1),
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(height: 40),
 
-                  // Logo and Brand
+                  // Logo and Brand - Revised
                   Column(
                     children: [
-                      Image.asset(
-                        'assets/screen/logo.png', // Updated path
-                        width: 74,
-                        height: 74,
-                      ),
-                      Transform.translate(
-                        offset: const Offset(0, -60),
-                        child: Text(
-                          'MoTech',
-                          style: GoogleFonts.inter(
-                            fontSize: MediaQuery.of(context).size.width > 640 ? 55 : 40,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xFF1E1E1E),
-                          ),
+                      Text(
+                        'MoTech',
+                        style: GoogleFonts.inter(
+                          fontSize: MediaQuery.of(context).size.width > 640 ? 55 : 40,
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xFF1E1E1E),
                         ),
                       ),
+
+                      Image.asset(
+                      'assets/screen/logo.png',
+                      width: 174,
+                      height: 174,
+                        ),
+                      const SizedBox(height: 2),
                     ],
                   ),
 
@@ -187,17 +186,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SocialLoginButton(
-                        icon: 'assets/google.png',
+                        icon: 'assets/screen/google.png',
                         onPressed: () {},
                       ),
                       const SizedBox(width: 16),
                       SocialLoginButton(
-                        icon: 'assets/whatsapp.png',
+                        icon: 'assets/screen/whatsapp.png',
                         onPressed: () {},
                       ),
                       const SizedBox(width: 16),
                       SocialLoginButton(
-                        icon: 'assets/facebook.png',
+                        icon: 'assets/screen/facebook.png',
                         onPressed: () {},
                       ),
                     ],
