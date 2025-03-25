@@ -29,7 +29,7 @@ class CropListItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$${crop.pricePerKg}/kg',
+                '\RM${crop.pricePerKg}/kg',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.green,

@@ -54,6 +54,18 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     ),
   ];
 
+  // Market prices list
+  final List<MarketPrice> marketPrices = [
+    MarketPrice(name: 'Corn', price: 4.5),
+    MarketPrice(name: 'Wheat', price: 5.2),
+    MarketPrice(name: 'Soybeans', price: 6.8),
+    MarketPrice(name: 'Rice', price: 5.6),
+    MarketPrice(name: 'Barley', price: 4.2),
+    MarketPrice(name: 'Oats', price: 3.9),
+    MarketPrice(name: 'Sorghum', price: 4.7),
+    MarketPrice(name: 'Millet', price: 4.1),
+  ];
+
   @override
   void dispose() {
     cropTypeController.dispose();
@@ -205,6 +217,103 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     );
   }
 
+    Widget _buildMarketPriceContent() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFFFF6),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            offset: const Offset(0, 2),
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Current Market Prices',
+            style: TextStyle(
+              color: Color(0xFF334155),
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            decoration: InputDecoration(
+              hintText: 'Search crops...',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: Color(0xFFCBD5E1),
+                  width: 1,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: Color(0xFFCBD5E1),
+                  width: 1,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: Color(0xFF34A853),
+                  width: 1.5,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Expanded(
+            child: ListView.builder(
+              itemCount: marketPrices.length,
+              itemBuilder: (context, index) {
+                final price = marketPrices[index];
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        offset: const Offset(0, 2),
+                        blurRadius: 4,
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      price.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF334155),
+                      ),
+                    ),
+                    trailing: Text(
+                      '\RM${price.price} per kg',
+                      style: TextStyle(
+                        color: Colors.green[700],
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -289,7 +398,9 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                         ? _buildSellingCropsContent()
                         : _selectedTabIndex == 1
                             ? _buildBuyingCropsContent()
-                            : _buildPlaceholderContent(_tabTitles[_selectedTabIndex]),
+                            : _selectedTabIndex == 3
+                                ? _buildMarketPriceContent()
+                                : _buildPlaceholderContent(_tabTitles[_selectedTabIndex]),
                   ),
                 ],
               ),
@@ -387,4 +498,14 @@ class CustomInputField extends StatelessWidget {
       ),
     );
   }
+}
+
+class MarketPrice {
+  final String name;
+  final double price;
+
+  MarketPrice({
+    required this.name,
+    required this.price,
+  });
 }
