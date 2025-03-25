@@ -89,7 +89,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 14),
                           MenuItem(
-                            title: 'Financial Hub',
+                            title: 'Knowledge Hub',
                             fontSize: 20,
                             onTap: () {
                                 Navigator.push(
@@ -102,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 14),
                           MenuItem(
-                            title: 'Knowledge Hub',
+                            title: 'Financial Hub',
                             fontSize: 20,
                             onTap: () {
                               // TODO: Navigate to Knowledge Hub screen

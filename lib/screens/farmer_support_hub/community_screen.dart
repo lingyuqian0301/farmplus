@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/app_colors.dart'; // Import the color palette
 
 enum CommunityTab { groups, upload }
 
@@ -49,7 +50,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
       child: Text(
         text,
         style: TextStyle(
-          color: isSelected ? Colors.blue : const Color(0xFF020304),
+          color: isSelected ? Colors.blue : AppColors.textPrimary,
           fontSize: 13,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
           height: 1.615,
@@ -124,16 +125,17 @@ class _CommunityScreenState extends State<CommunityScreen> {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimary,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   members,
                   style: TextStyle(
-                    color: Colors.grey[600],
+                    color: AppColors.textSecondary,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -142,7 +144,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
                     // TODO: Implement join group functionality
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: AppColors.buttonBackground,
+                    foregroundColor: AppColors.buttonText,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -166,15 +169,18 @@ class _CommunityScreenState extends State<CommunityScreen> {
             controller: _postController,
             decoration: InputDecoration(
               hintText: 'Write your post...',
+              hintStyle: TextStyle(color: AppColors.textSecondary),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.textSecondary),
               ),
               suffixIcon: IconButton(
-                icon: const Icon(Icons.send),
+                icon: Icon(Icons.send, color: AppColors.buttonBackground),
                 onPressed: _submitPost,
               ),
             ),
             maxLines: 4,
+            style: TextStyle(color: AppColors.textPrimary),
           ),
         ),
         const SizedBox(height: 16),
@@ -218,9 +224,15 @@ class _CommunityScreenState extends State<CommunityScreen> {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.grey[300],
-              child: Text(username[0]),
+              child: Text(
+                username[0],
+                style: TextStyle(color: AppColors.textPrimary),
+              ),
             ),
-            title: Text(username),
+            title: Text(
+              username,
+              style: TextStyle(color: AppColors.textPrimary),
+            ),
           ),
           Container(
             width: double.infinity,
@@ -238,13 +250,19 @@ class _CommunityScreenState extends State<CommunityScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(content),
+                Text(
+                  content,
+                  style: TextStyle(color: AppColors.textPrimary),
+                ),
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(Icons.favorite_border, size: 20),
+                    Icon(Icons.favorite_border, size: 20, color: AppColors.textSecondary),
                     const SizedBox(width: 4),
-                    Text('$likes likes'),
+                    Text(
+                      '$likes likes',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
                   ],
                 ),
               ],
@@ -259,7 +277,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
     if (_postController.text.isNotEmpty) {
       // TODO: Implement post submission logic
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Post submitted')),
+        SnackBar(
+          content: Text(
+            'Post submitted',
+            style: TextStyle(color: AppColors.buttonText),
+          ),
+          backgroundColor: AppColors.buttonBackground,
+        ),
       );
       _postController.clear();
     }

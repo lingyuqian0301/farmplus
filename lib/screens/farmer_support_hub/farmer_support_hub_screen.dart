@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'content_card.dart';
-import 'community_screen.dart'; // Import the new CommunityScreen
+import 'community_screen.dart';
+import '../../theme/app_colors.dart';
 
 enum TabItem { tutorialVideos, community, equipments }
 
@@ -20,39 +21,59 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
     final isMobile = screenWidth <= 640;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Farming Support Hub'),
-        centerTitle: true,
-      ),
       body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(isMobile ? 16.0 : 24.0),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 800),
-              child: Column(
-                children: [
-                  // Navigation Section
-                  _buildNavigation(),
-                  
-                  const SizedBox(height: 16),
-                  
-                  // Divider
-                  Container(
-                    height: 1,
-                    color: const Color(0xFF64748B),
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0.196, 0.451],
+            colors: [
+              Color(0xFFFFFCD8), // Light yellow
+              Color(0xFFCBEFD1), // Light green
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              // AppBar-like title
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Text(
+                  'Farming Support Hub',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
                   ),
-                  
-                  const SizedBox(height: 24),
-                  
-                  // Content Section
-                  Expanded(
+                ),
+              ),
+
+              // Navigation Section
+              _buildNavigation(),
+              
+              const SizedBox(height: 16),
+              
+              // Divider
+              Container(
+                height: 1,
+                color: Colors.black26,
+              ),
+              
+              const SizedBox(height: 24),
+              
+              // Content Section
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: isMobile ? 16.0 : 24.0),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 800),
                     child: _buildContent(),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -83,7 +104,7 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
       child: Text(
         text,
         style: TextStyle(
-          color: isSelected ? Colors.blue : const Color(0xFF020304),
+          color: isSelected ? Colors.blue : AppColors.textPrimary,
           fontSize: 13,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
           height: 1.615,
@@ -118,7 +139,7 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
         ContentCard(
           title: 'Irrigation Systems Setup',
           description: 'Step-by-step guide to modern irrigation installation',
-          showIcon: true,
+          showIcon: false,
         ),
       ],
     );
@@ -131,7 +152,7 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
         ContentCard(
           title: 'Equipment Rentals',
           description: 'Find nearby agricultural machinery rentals',
-          showIcon: true,
+          showIcon: false,
         ),
         const SizedBox(height: 24),
         ContentCard(
