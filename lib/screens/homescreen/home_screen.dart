@@ -55,7 +55,8 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           MenuItem(
                             title: 'Crop Analysis',
-                            fontSize: 21,
+                            fontSize: 22,
+                            // fontWeight: FontWeight.bold,
                             onTap: () {
                               // TODO: Navigate to Crop Analysis screen if you have it
                             },
@@ -63,7 +64,8 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           MenuItem(
                             title: 'Measurement',
-                            fontSize: 20,
+                            fontSize: 22,
+                            // fontWeight: FontWeight.bold,
                             onTap: () {
                               // Navigate to MeasurementsScreen
                               Navigator.push(
@@ -77,7 +79,8 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           MenuItem(
                             title: 'Dashboard',
-                            fontSize: 20,
+                            fontSize: 22,
+                            // fontWeight: FontWeight.bold,
                             onTap: () {
                                 Navigator.push(
                                 context,
@@ -90,7 +93,8 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           MenuItem(
                             title: 'Knowledge Hub',
-                            fontSize: 20,
+                            fontSize: 22,
+                            // fontWeight: FontWeight.bold,
                             onTap: () {
                                 Navigator.push(
                                 context,
@@ -103,7 +107,8 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           MenuItem(
                             title: 'Financial Hub',
-                            fontSize: 20,
+                            fontSize: 22,
+                            // fontWeight: FontWeight.bold,
                             onTap: () {
                               // TODO: Navigate to Knowledge Hub screen
                             },
