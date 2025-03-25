@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/navbar.dart';
 
-
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
@@ -369,8 +367,8 @@ class HomePageBody extends StatelessWidget {
                           height: 33.33 * fem,
                           child: TextButton(
                             onPressed: () {
-                              // Navigate to community page
-                              Navigator.pushNamed(context, '/community');
+                              // Navigate to crop analysis page
+                              Navigator.pushNamed(context, '/analyze');
                             },
                             style:
                                 TextButton.styleFrom(padding: EdgeInsets.zero),

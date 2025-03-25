@@ -46,10 +46,10 @@ class _Navbar extends State<Navbar> {
               Navigator.pushReplacementNamed(context, '/order');
               break;
             case 2:
-              Navigator.pushReplacementNamed(context, '/analyze');
+              Navigator.pushReplacementNamed(context, '/crop');
               break;
             case 3:
-              Navigator.pushReplacementNamed(context, '/crop'); // Added Crop page
+              Navigator.pushReplacementNamed(context, '/support');
               break;
             case 4:
               Navigator.pushReplacementNamed(context, '/profile');
@@ -69,19 +69,19 @@ class _Navbar extends State<Navbar> {
             icon: _currentIndex == 1
                 ? const Icon(Icons.shopping_bag)
                 : const Icon(Icons.shopping_bag_outlined),
-            label: "Order",
+            label: "Sales",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 2
-                ? const Icon(Icons.camera_alt)
-                : const Icon(Icons.camera_alt_outlined),
-            label: "Analyze",
+                ? const Icon(Icons.eco)
+                : const Icon(Icons.eco_outlined),
+            label: "Farm",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 3
-                ? const Icon(Icons.agriculture) // Icon for crops
-                : const Icon(Icons.agriculture_outlined),
-            label: "Crops",
+                ? const Icon(Icons.build_circle)
+                : const Icon(Icons.build_circle_outlined),
+            label: "Support Hub",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 4

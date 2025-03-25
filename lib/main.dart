@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:myapp/screens/farmer_support_hub/farmer_support_hub_screen.dart';
 import 'firebase_options.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ import 'package:myapp/page-1/select-crop-field-page.dart';
 import 'package:myapp/page-1/crop-management-page.dart';
 import 'package:myapp/page-1/add-new-field-page.dart';
 import 'package:myapp/page-1/loginPage.dart';
-import 'package:myapp/page-1/groups-community.dart';
 import 'package:myapp/page-1/supply-chain.dart';
 import 'package:myapp/screens/crop_analysis.dart';
 
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => const ProfilePage(),
         '/tutorial': (context) => const tutorialHome(),
         '/supplychain': (context) => const SupplyChain(),
-        '/community': (context) => const community(),
+        '/support': (context) => const FarmingSupportScreen(),
         '/inventory': (context) => const InventoryPage(),
         '/addInventory': (context) => const NewInventoryItem(),
         '/inventoryDetail': (context) => const InventoryDetail(),
