@@ -335,6 +335,7 @@ class CalendarCell extends StatelessWidget {
             fontSize: isSmallScreen ? 12 : 14,
             color: const Color(0xFF334155),
           ),
+       
         ),
         if (extraText != null)
           Expanded(
