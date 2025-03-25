@@ -105,18 +105,45 @@ class _LoginScreenState extends State<LoginScreen> {
                       // ),
                     ],
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 20),
 
                   // Logo and Brand - Revised
                   Column(
                     children: [
-                      Text(
-                        'MoTech',
-                        style: GoogleFonts.inter(
-                          fontSize: MediaQuery.of(context).size.width > 640 ? 55 : 40,
-                          fontWeight: FontWeight.w500,
-                          color: const Color(0xFF1E1E1E),
-                        ),
+                      Stack(
+                        // Align both texts exactly on top of each other
+                        alignment: Alignment.center,
+                        children: [
+                          // 1) OUTLINE (Stroke)
+                          // Text(
+                          //   'MoTech',
+                          //   style: GoogleFonts.lobster(
+                          //     fontSize: 100,
+                          //     // Paint style for STROKE
+                          //     foreground: Paint()
+                          //       ..style = PaintingStyle.stroke
+                          //       ..strokeWidth = 16  // thickness of the outline
+                          //       ..color = const Color.fromARGB(255, 127, 215, 114), // outline color
+                          //   ),
+                          // ),
+
+                          // 2) FILL (with shadow)
+                          Text(
+                            'MoTech',
+                            style: GoogleFonts.lobster(
+                              fontSize: 60,
+                              color: const Color.fromARGB(255, 30, 129, 15), // main fill color
+                              // Add a drop shadow for a “3D” look
+                              shadows: [
+                                Shadow(
+                                  offset: const Offset(2, 2),  // how far the shadow is
+                                  blurRadius: 6,               // how soft the shadow is
+                                  color: const Color.fromARGB(95, 255, 254, 254),       // shadow color
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
 
                       Image.asset(
@@ -124,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 174,
                       height: 174,
                         ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 1),
                     ],
                   ),
 
