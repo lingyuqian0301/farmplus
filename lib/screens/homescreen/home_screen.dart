@@ -3,6 +3,8 @@ import 'menu_item.dart';
 import '../measurement_screen/measurement_screen.dart';
 import '../farmer_dashboard_screen/farm_performance_overview.dart';
 import '../farmer_support_hub/farmer_support_hub_screen.dart';
+import '../farmer_financial_hub/selling_crop/farm_financial_services_screen.dart';
+// C:\Users\Dell\Downloads\projects\varsity-hackathon\project\farmplus\lib\screens\farmer_financial_hub\selling_crop\farm_financial_services_screen.dart
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -110,7 +112,12 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 22,
                             // fontWeight: FontWeight.bold,
                             onTap: () {
-                              // TODO: Navigate to Knowledge Hub screen
+                                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                builder: (context) => const FarmFinancialServicesScreen(),
+                                ),
+                              );
                             },
                           ),
                         ],
