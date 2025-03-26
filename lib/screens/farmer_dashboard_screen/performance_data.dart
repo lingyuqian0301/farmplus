@@ -9,10 +9,3 @@ class PerformanceData {
     required this.date,
   });
 }
-
-class PerformanceDataPoint {
-  final double x;
-  final double y;
-
-  PerformanceDataPoint(this.x, this.y);
-}
