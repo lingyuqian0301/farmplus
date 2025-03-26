@@ -44,7 +44,7 @@ class PerformanceGraph extends StatelessWidget {
                     getTitlesWidget: (value, meta) => Padding(
                       padding: const EdgeInsets.only(right: 12.0),
                       child: Text(
-                        '\RM${value.toInt()}',
+                        'RM${value.toInt()}',
                         style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 10,
@@ -78,8 +78,8 @@ class PerformanceGraph extends StatelessWidget {
                     reservedSize: 32,
                   ),
                 ),
-                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
               ),
               borderData: FlBorderData(show: false),
               minX: 0,
@@ -106,8 +106,8 @@ class PerformanceGraph extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: isEarnings 
-                                ? 'Earnings: \RM${spot.y.toInt()}' 
-                                : 'Spending: \RM${spot.y.toInt()}',
+                                ? 'Earnings: RM${spot.y.toInt()}' 
+                                : 'Spending: RM${spot.y.toInt()}',
                             style: TextStyle(
                               color: isEarnings ? _earningsColor() : _spendingColor(),
                             ),
@@ -168,7 +168,7 @@ class PerformanceGraph extends StatelessWidget {
       color: _earningsColor(),
       barWidth: 3,
       isStrokeCapRound: true,
-      dotData: FlDotData(show: true),
+      dotData: const FlDotData(show: true),
       belowBarData: BarAreaData(show: false),
     );
   }
@@ -183,7 +183,7 @@ class PerformanceGraph extends StatelessWidget {
       color: _spendingColor(),
       barWidth: 3,
       isStrokeCapRound: true,
-      dotData: FlDotData(show: true),
+      dotData: const FlDotData(show: true),
       belowBarData: BarAreaData(show: false),
     );
   }

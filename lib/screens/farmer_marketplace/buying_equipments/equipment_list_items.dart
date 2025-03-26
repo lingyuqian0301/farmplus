@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Equipment.dart';
+import 'equipment.dart';
 
 class EquipmentListItem extends StatelessWidget {
   final Equipment equipment;
@@ -23,23 +23,7 @@ class EquipmentListItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Placeholder image container
-          Container(
-            width: 100,
-            height: 100,
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Center(
-              child: Icon(
-                Icons.image_outlined,
-                color: Colors.grey,
-                size: 50,
-              ),
-            ),
-          ),
+          _buildImage(equipment.imageUrl), // ✅ Dynamically load image
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -72,7 +56,7 @@ class EquipmentListItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\RM${equipment.pricePerDay} per day',
+                    'RM${equipment.pricePerDay} per day',
                     style: TextStyle(
                       color: Colors.green[700],
                       fontWeight: FontWeight.w600,
@@ -83,6 +67,45 @@ class EquipmentListItem extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// **Dynamically load an image or show a placeholder if unavailable**
+  Widget _buildImage(String imageUrl) {
+    if (imageUrl.isEmpty) {
+      return _placeholderImage();
+    }
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.asset(
+        imageUrl,
+        width: 100,
+        height: 100,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          debugPrint("Image load failed: $imageUrl");
+          return _placeholderImage();
+        },
+      ),
+    );
+  }
+
+  /// **Placeholder Image**
+  Widget _placeholderImage() {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: const Center(
+        child: Icon(
+          Icons.broken_image_outlined,
+          color: Colors.grey,
+          size: 50,
+        ),
       ),
     );
   }

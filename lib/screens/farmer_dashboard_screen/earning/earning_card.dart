@@ -108,7 +108,7 @@ class SpendingCardItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\RM',
+                'RM',
                 style: GoogleFonts.inter(
                   fontSize: MediaQuery.of(context).size.width > 640 ? 24 : 20,
                   fontWeight: FontWeight.w700,
@@ -220,7 +220,7 @@ class __EditableSpendingCardItemState extends State<_EditableSpendingCardItem> {
                               fontSize: 14,
                               color: const Color(0xFFFFFFF6),
                             ),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               isDense: true,
                               border: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
@@ -251,7 +251,7 @@ class __EditableSpendingCardItemState extends State<_EditableSpendingCardItem> {
           Row(
             children: [
               Text(
-                '\RM',
+                'RM',
                 style: GoogleFonts.inter(
                   fontSize: MediaQuery.of(context).size.width > 640 ? 24 : 20,
                   fontWeight: FontWeight.w700,
@@ -270,7 +270,7 @@ class __EditableSpendingCardItemState extends State<_EditableSpendingCardItem> {
                           fontWeight: FontWeight.w700,
                           color: const Color(0xFFFFFFF6),
                         ),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           isDense: true,
                           border: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),

@@ -6,7 +6,7 @@ import '../buying_equipments/equipment_list_items.dart';
 import '../buying_crop/crop.dart';
 import '../buying_crop/crop_list_items.dart';
 import '../buying_crop/crop_search_bar.dart';
-import '../buying_equipments/Equipment.dart';
+import '../buying_equipments/equipment.dart';
 
 class FarmFinancialServicesScreen extends StatefulWidget {
   const FarmFinancialServicesScreen({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
       model: '6105M',
       pricePerDay: 250.00,
       availableDays: 15,
-      imageUrl: '',
+      imageUrl: 'assets/images/tractor.jpg',
     ),
     Equipment(
       name: 'Harvester',
@@ -49,7 +49,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
       model: 'Axial-Flow 7250',
       pricePerDay: 500.00,
       availableDays: 10,
-      imageUrl: '',
+      imageUrl: 'assets/images/harvester.jpg',
     ),
     Equipment(
       name: 'Irrigation System',
@@ -57,7 +57,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
       model: 'Zimmatic',
       pricePerDay: 180.00,
       availableDays: 20,
-      imageUrl: '',
+      imageUrl: 'assets/images/new_irrigation.jpg',
     ),
   ];
 
@@ -72,27 +72,27 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
   final List<Crop> crops = [
     Crop(
       name: 'Organic Corn',
-      farmerName: 'John Smith',
-      location: 'Iowa Farm',
+      farmerName: 'Mohd Ali',
+      location: 'Sungai Petani Farm',
       pricePerKg: 5.25,
       availableKg: 1000,
-      imageUrl: '',
+      imageUrl: 'assets/images/corn.jpg', // Correct path
     ),
     Crop(
       name: 'Premium Wheat',
-      farmerName: 'Mary Johnson',
+      farmerName: 'Mary Lee',
       location: 'Kansas Farm',
       pricePerKg: 6.4,
       availableKg: 750,
-      imageUrl: '',
+      imageUrl: 'assets/images/wheat.jpg',
     ),
     Crop(
       name: 'Fresh Soybeans',
-      farmerName: 'Robert Davis',
-      location: 'Illinois Farm',
+      farmerName: 'Ali bin Abu',
+      location: 'Kuantan Farm',
       pricePerKg: 7.8,
       availableKg: 500,
-      imageUrl: '',
+      imageUrl: 'assets/images/soybean.png',
     ),
   ];
 
@@ -380,7 +380,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                       ),
                     ),
                     trailing: Text(
-                      '\RM${price.price} per kg',
+                      'RM${price.price} per kg',
                       style: TextStyle(
                         color: Colors.green[700],
                         fontWeight: FontWeight.w600,
@@ -576,7 +576,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
           ],
         ),
         trailing: Text(
-          '\RM${equipment.pricePerDay} per day',
+          'RM${equipment.pricePerDay} per day',
           style: TextStyle(
             color: Colors.green[700],
             fontWeight: FontWeight.w600,
@@ -617,7 +617,7 @@ Widget _buildDataTypeItem(String title, String description, double price) {
         ),
       ),
       trailing: Text(
-        '\RM$price',
+        'RM$price',
         style: TextStyle(
           color: Colors.green[700],
           fontWeight: FontWeight.w600,

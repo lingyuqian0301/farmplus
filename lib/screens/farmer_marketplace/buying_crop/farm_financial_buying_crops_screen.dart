@@ -8,38 +8,45 @@ class FarmFinancialServicesScreen extends StatefulWidget {
   const FarmFinancialServicesScreen({Key? key}) : super(key: key);
 
   @override
-  State<FarmFinancialServicesScreen> createState() => _FarmFinancialServicesScreenState();
+  State<FarmFinancialServicesScreen> createState() =>
+      _FarmFinancialServicesScreenState();
 }
 
-class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScreen> {
+class _FarmFinancialServicesScreenState
+    extends State<FarmFinancialServicesScreen> {
   final List<Crop> crops = [
     Crop(
       name: 'Organic Corn',
-      farmerName: 'John Smith',
-      location: 'Iowa Farm',
+      farmerName: 'Mohd Ali',
+      location: 'Sungai Petani Farm',
       pricePerKg: 5.25,
       availableKg: 1000,
-      imageUrl: '',
+      imageUrl: 'assets/images/corn.jpg', // Correct path
     ),
     Crop(
       name: 'Premium Wheat',
-      farmerName: 'Mary Johnson',
+      farmerName: 'Mary Lee',
       location: 'Kansas Farm',
       pricePerKg: 6.4,
       availableKg: 750,
-      imageUrl: '',
+      imageUrl: 'assets/images/wheat.jpg',
     ),
     Crop(
       name: 'Fresh Soybeans',
-      farmerName: 'Robert Davis',
-      location: 'Illinois Farm',
+      farmerName: 'Ali bin Abu',
+      location: 'Kuantan Farm',
       pricePerKg: 7.8,
       availableKg: 500,
-      imageUrl: '',
+      imageUrl: 'assets/images/soybean.png',
     ),
   ];
 
-  final List<String> _tabs = ['Selling Crops', 'Buying Crops', 'Selling Data', 'Market Price'];
+  final List<String> _tabs = [
+    'Selling Crops',
+    'Buying Crops',
+    'Selling Data',
+    'Market Price'
+  ];
   int _selectedTabIndex = 1; // Buying Crops tab selected by default
 
   @override
@@ -77,7 +84,9 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                           tab,
                           style: TextStyle(
                             color: isSelected ? Colors.black : Colors.grey,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),
