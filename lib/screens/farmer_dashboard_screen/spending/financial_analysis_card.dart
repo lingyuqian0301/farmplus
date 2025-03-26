@@ -47,7 +47,7 @@ class FinancialAnalysisCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMediumScreen = screenWidth > 640;
+    // final isMediumScreen = screenWidth > 640;
 
     return Container(
       padding: EdgeInsets.all(screenWidth > 991 ? 24 : 16),

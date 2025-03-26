@@ -32,7 +32,7 @@ class TotalSpendingScreen extends StatelessWidget {
                   'Total Spending',
                   style: GoogleFonts.inter(
                     fontSize: MediaQuery.of(context).size.width > 640 ? 32 : 24,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w900,
                     color: const Color(0xFF010102),
                   ),
                 ),

@@ -61,15 +61,15 @@ class MeasurementsScreen extends StatelessWidget {
     if (isSmallScreen) {
       // Small Screen Layout: Column for title + row of indicators/buttons
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             'Current Measurements',
             style: TextStyle(
               color: AppColors.primaryText,
               fontSize: 24,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Inter',
+              fontWeight: FontWeight.w900,
+              fontFamily: 'montserrat',
             ),
           ),
           const SizedBox(height: 12),
@@ -114,8 +114,8 @@ class MeasurementsScreen extends StatelessWidget {
             style: TextStyle(
               color: AppColors.primaryText,
               fontSize: 24,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Inter',
+              fontWeight: FontWeight.w900,
+              fontFamily: 'montserrat',
             ),
           ),
           Row(

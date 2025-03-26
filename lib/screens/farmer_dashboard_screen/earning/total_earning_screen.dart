@@ -33,7 +33,7 @@ class TotalEarningScreen extends StatelessWidget {
                   'Total Earning',
                   style: GoogleFonts.inter(
                     fontSize: MediaQuery.of(context).size.width > 640 ? 32 : 24,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w900,
                     color: const Color(0xFF010102),
                   ),
                 ),

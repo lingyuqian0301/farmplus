@@ -390,7 +390,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                     style: TextStyle(
                       color: Color(0xFF010102),
                       fontSize: 24,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w900,
                       height: 1.5,
                     ),
                   ),

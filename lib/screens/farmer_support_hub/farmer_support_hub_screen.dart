@@ -45,7 +45,7 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
                   'Farming Support Hub',
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w900,
                     color: Colors.black87,
                   ),
                 ),

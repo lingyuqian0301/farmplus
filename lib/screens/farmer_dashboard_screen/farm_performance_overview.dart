@@ -87,14 +87,14 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 476),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
                     'Farm Performance Overview',
                     style: TextStyle(
                       color: Color(0xFF010102),
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
                       height: 1.125,
                     ),
                   ),
