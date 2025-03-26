@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Navbar extends StatefulWidget {
   final int index;
 
@@ -27,7 +28,7 @@ class _Navbar extends State<Navbar> {
             color: const Color.fromARGB(103, 158, 158, 158).withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 4,
-            offset: const Offset(0, -3), // Offset changes shadow position
+            offset: const Offset(0, -3),
           ),
         ],
       ),
@@ -45,38 +46,47 @@ class _Navbar extends State<Navbar> {
               Navigator.pushReplacementNamed(context, '/order');
               break;
             case 2:
-              Navigator.pushReplacementNamed(context, '/crop');
+              Navigator.pushReplacementNamed(context, '/analyze');
               break;
             case 3:
+              Navigator.pushReplacementNamed(context, '/crop'); // Added Crop page
+              break;
+            case 4:
               Navigator.pushReplacementNamed(context, '/profile');
               break;
           }
         },
-        selectedItemColor: const Color.fromARGB(255, 23, 116, 41), // Selected item color
-        unselectedItemColor: Colors.grey.withOpacity(0.5), // Unselected item color
+        selectedItemColor: const Color.fromARGB(255, 23, 116, 41),
+        unselectedItemColor: Colors.grey.withOpacity(0.5),
         items: [
           BottomNavigationBarItem(
             icon: _currentIndex == 0
-                ? const Icon(Icons.home) // Normal icon for selected item
-                : const Icon(Icons.home_outlined), // Outlined icon for unselected item
+                ? const Icon(Icons.home)
+                : const Icon(Icons.home_outlined),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 1
-                ? const Icon(Icons.shopping_bag) // Normal icon for selected item
-                : const Icon(Icons.shopping_bag_outlined), // Outlined icon for unselected item
+                ? const Icon(Icons.shopping_bag)
+                : const Icon(Icons.shopping_bag_outlined),
             label: "Order",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 2
-                ? const Icon(Icons.grass) // Normal icon for selected item
-                : const Icon(Icons.grass_outlined), // Outlined icon for unselected item
-            label: "Crop",
+                ? const Icon(Icons.camera_alt)
+                : const Icon(Icons.camera_alt_outlined),
+            label: "Analyze",
           ),
           BottomNavigationBarItem(
             icon: _currentIndex == 3
-                ? const Icon(Icons.account_circle) // Normal icon for selected item
-                : const Icon(Icons.account_circle_outlined), // Outlined icon for unselected item
+                ? const Icon(Icons.agriculture) // Icon for crops
+                : const Icon(Icons.agriculture_outlined),
+            label: "Crops",
+          ),
+          BottomNavigationBarItem(
+            icon: _currentIndex == 4
+                ? const Icon(Icons.account_circle)
+                : const Icon(Icons.account_circle_outlined),
             label: "Profile",
           ),
         ],

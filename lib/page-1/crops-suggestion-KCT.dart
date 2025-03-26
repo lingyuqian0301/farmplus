@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/crops-suggestion-Hw5.dart';
 
 class Scene7 extends StatelessWidget {
   const Scene7({super.key});
