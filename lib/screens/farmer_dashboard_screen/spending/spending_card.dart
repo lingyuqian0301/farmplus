@@ -83,7 +83,7 @@ class SpendingCardItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$',
+                '\RM',
                 style: GoogleFonts.inter(
                   fontSize: MediaQuery.of(context).size.width > 640 ? 24 : 20,
                   fontWeight: FontWeight.w700,

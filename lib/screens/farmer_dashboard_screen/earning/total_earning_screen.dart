@@ -38,7 +38,7 @@ class TotalEarningScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const FinancialAnalysisCard(),
+                FinancialAnalysisCard(),
                 const SizedBox(height: 24),
                 const CropSourcesCard(),
                 const SizedBox(height: 24),

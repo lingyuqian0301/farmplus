@@ -1,9 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'dart:math' as math;
 
 class FinancialAnalysisCard extends StatelessWidget {
-  const FinancialAnalysisCard({Key? key}) : super(key: key);
+  FinancialAnalysisCard({Key? key}) : super(key: key) {
+    // Initialize random data when the widget is created
+    _generateRandomData();
+  }
+
+  final List<PieChartSectionData> _pieData = [];
+  final _random = math.Random();
+  final List<Color> _colors = [
+    const Color(0xFF4318D1),
+    const Color(0xFFFFB800),
+    const Color(0xFF00B37E),
+    const Color(0xFFFF6B6B),
+  ];
+  final List<String> _labels = ['Rice', 'Corn', 'Wheat', 'Soybeans'];
+
+  void _generateRandomData() {
+    _pieData.clear();
+    
+    // Generate random values that sum up to 100
+    final values = List.generate(4, (index) => _random.nextDouble() * 100);
+    final total = values.reduce((a, b) => a + b);
+    
+    for (int i = 0; i < 4; i++) {
+      final value = (values[i] / total * 100).roundToDouble();
+      _pieData.add(
+        PieChartSectionData(
+          color: _colors[i],
+          value: value,
+          title: '${value.toStringAsFixed(1)}%',
+          radius: 100,
+          titleStyle: GoogleFonts.inter(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +65,72 @@ class FinancialAnalysisCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // 1) Header text only
           _buildHeaderText(isMediumScreen),
           const SizedBox(height: 24),
-          // 2) Chart
-          _buildResponsiveChart(),
+          _buildPieChart(),
+          const SizedBox(height: 16),
+          _buildLegend(),
           const SizedBox(height: 24),
-          // 3) Period Selector is now BELOW the chart
           _buildPeriodSelector(),
         ],
       ),
     );
   }
 
+  Widget _buildPieChart() {
+    return AspectRatio(
+      aspectRatio: 1,
+      child: PieChart(
+        PieChartData(
+          sections: _pieData,
+          centerSpaceRadius: 40,
+          sectionsSpace: 4,
+          startDegreeOffset: -90,
+          borderData: FlBorderData(show: false),
+          pieTouchData: PieTouchData(
+            touchCallback: (FlTouchEvent event, pieTouchResponse) {
+              // Handle touch events if needed
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLegend() {
+    return Wrap(
+      spacing: 20,
+      runSpacing: 10,
+      children: List.generate(4, (index) => _buildLegendItem(index)),
+    );
+  }
+
+  Widget _buildLegendItem(int index) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 12,
+          height: 12,
+          decoration: BoxDecoration(
+            color: _colors[index],
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(
+          _labels[index],
+          style: GoogleFonts.inter(
+            color: const Color(0xFF334155),
+            fontSize: 12,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Keep the existing header and period selector methods
   Widget _buildHeaderText(bool isMediumScreen) {
     return Text(
       'Crop Financial Analysis',
@@ -50,36 +143,6 @@ class FinancialAnalysisCard extends StatelessWidget {
     );
   }
 
-  Widget _buildResponsiveChart() {
-    return AspectRatio(
-      aspectRatio: 1, // Keeps it square
-      child: SvgPicture.string(
-                      '''<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_101_326)">
-                  <path d="M150 50C167.553 50.0004 184.797 54.6213 199.999 63.3981C215.2 72.1749 227.823 84.7985 236.6 100L150 150V50Z" fill="#4318D1"/>
-                  <path d="M236.6 100C245.377 115.202 249.997 132.446 249.997 150C249.997 167.554 245.377 184.798 236.6 200L150 150L236.6 100Z" fill="#FFB800"/>
-                  <path d="M236.6 200C227.823 215.202 215.2 227.825 199.999 236.602C184.797 245.379 167.553 250 150 250V150L236.6 200Z" fill="#00B37E"/>
-                  <path d="M150 250C132.447 250 115.203 245.379 100.001 236.602C84.8 227.825 72.1766 215.202 63.4 200L150 150V250Z" fill="#FF6B6B"/>
-                  <path d="M22 260H10V272H22V260Z" fill="#4318D1"/>
-                  <text fill="#334155" font-family="Inter" font-size="12"><tspan x="30" y="269.864">Rice</tspan></text>
-                  <path d="M102 260H90V272H102V260Z" fill="#FFB800"/>
-                  <text fill="#334155" font-family="Inter" font-size="12"><tspan x="110" y="269.864">Corn</tspan></text>
-                  <path d="M182 260H170V272H182V260Z" fill="#00B37E"/>
-                  <text fill="#334155" font-family="Inter" font-size="12"><tspan x="190" y="269.864">Wheat</tspan></text>
-                  <path d="M262 260H250V272H262V260Z" fill="#FF6B6B"/>
-                  <text fill="#334155" font-family="Inter" font-size="12"><tspan x="270" y="269.864">Soybeans</tspan></text>
-                </g>
-                <defs>
-                  <clipPath id="clip0_101_326">
-                    <rect width="300" height="300" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>''',
-      ),
-    );
-  }
-
-  /// The Month/Year buttons now appear BELOW the chart.
   Widget _buildPeriodSelector() {
     return Container(
       decoration: BoxDecoration(
