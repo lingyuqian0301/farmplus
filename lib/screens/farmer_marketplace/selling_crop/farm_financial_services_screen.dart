@@ -2,9 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/components/navbar.dart';
+import '../buying_equipments/equipment_list_items.dart';
 import '../buying_crop/crop.dart';
 import '../buying_crop/crop_list_items.dart';
 import '../buying_crop/crop_search_bar.dart';
+import '../buying_equipments/Equipment.dart';
 
 class FarmFinancialServicesScreen extends StatefulWidget {
   const FarmFinancialServicesScreen({Key? key}) : super(key: key);
@@ -32,11 +34,39 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     }
   }
 
+  final List<Equipment> equipments = [
+    Equipment(
+      name: 'Tractor',
+      brand: 'John Deere',
+      model: '6105M',
+      pricePerDay: 250.00,
+      availableDays: 15,
+      imageUrl: '',
+    ),
+    Equipment(
+      name: 'Harvester',
+      brand: 'Case IH',
+      model: 'Axial-Flow 7250',
+      pricePerDay: 500.00,
+      availableDays: 10,
+      imageUrl: '',
+    ),
+    Equipment(
+      name: 'Irrigation System',
+      brand: 'Lindsay',
+      model: 'Zimmatic',
+      pricePerDay: 180.00,
+      availableDays: 20,
+      imageUrl: '',
+    ),
+  ];
+
   final List<String> _tabTitles = [
-    'Selling Crops',
-    'Buying Crops',
-    'Selling Data',
-    'Market Price',
+    'Sell\nCrops',
+    'Buy\nCrops',
+    'Buy\nEquipments',
+    'Sell\nData',
+    'Market\nPrice',
   ];
 
   final List<Crop> crops = [
@@ -436,6 +466,126 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
   );
 }
 
+  Widget _buildBuyingEquipmentContent() {
+  return Container(
+    padding: const EdgeInsets.all(24),
+    decoration: BoxDecoration(
+      color: const Color(0xFFFFFFF6),
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.08),
+          offset: const Offset(0, 2),
+          blurRadius: 8,
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Available Equipment',
+          style: TextStyle(
+            color: Color(0xFF334155),
+            fontSize: 16,
+            fontWeight: FontWeight.w600,  // Increased font weight
+          ),
+        ),
+        const SizedBox(height: 16),
+        TextField(
+          decoration: InputDecoration(
+            hintText: 'Search equipment...',
+            prefixIcon: const Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFFCBD5E1),
+                width: 1,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFFCBD5E1),
+                width: 1,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFF34A853),
+                width: 1.5,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        Expanded(
+          child: ListView.builder(
+            itemCount: equipments.length,
+            itemBuilder: (context, index) {
+              return EquipmentListItem(equipment: equipments[index]);
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+  // Helper method to create equipment list items
+  Widget _buildEquipmentListItem(Equipment equipment) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            offset: const Offset(0, 2),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: ListTile(
+        title: Text(
+          equipment.name,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF334155),
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${equipment.brand} - ${equipment.model}',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              '${equipment.availableDays} days available',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        trailing: Text(
+          '\RM${equipment.pricePerDay} per day',
+          style: TextStyle(
+            color: Colors.green[700],
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+
 // Helper method to create data type list items
 Widget _buildDataTypeItem(String title, String description, double price) {
   return Container(
@@ -529,10 +679,11 @@ Widget _buildDataTypeItem(String title, String description, double price) {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Center(
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Text(
+                                child: Text(
+                                  // fit: BoxFit.scaleDown,
+                                  // child: Text(
                                     _tabTitles[index],
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: _selectedTabIndex == index 
                                           ? const Color(0xFF0284C7) 
@@ -542,10 +693,10 @@ Widget _buildDataTypeItem(String title, String description, double price) {
                                           ? FontWeight.w600 
                                           : FontWeight.w400,
                                     ),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                    // textAlign: TextAlign.center,
+                                    // maxLines: 1,
+                                    // overflow: TextOverflow.ellipsis,
+                                  // ),
                                 ),
                               ),
                             ),
@@ -561,9 +712,11 @@ Widget _buildDataTypeItem(String title, String description, double price) {
                       : _selectedTabIndex == 1
                           ? _buildBuyingCropsContent()
                           : _selectedTabIndex == 2
-                              ? _buildSellingDataContent()
+                              ? _buildBuyingEquipmentContent()
                               : _selectedTabIndex == 3
-                                  ? _buildMarketPriceContent()
+                                  ? _buildSellingDataContent()
+                                  : _selectedTabIndex == 4
+                                      ? _buildMarketPriceContent()
                                   : _buildPlaceholderContent(_tabTitles[_selectedTabIndex]),
                 ),
                 ],
