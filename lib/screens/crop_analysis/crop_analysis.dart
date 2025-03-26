@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:myapp/components/navbar.dart';
-import 'package:myapp/screens/crop_analysis_result.dart';
+import 'package:myapp/screens/crop_analysis/crop_analysis_result.dart';
 
 class CropAnalysisPage extends StatefulWidget {
   const CropAnalysisPage({super.key});

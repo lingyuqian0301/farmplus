@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/navbar.dart';
-import 'package:myapp/screens/crop_analysis.dart';
+import 'package:myapp/screens/crop_analysis/crop_analysis.dart';
 import 'menu_item.dart';
 import '../measurement_screen/measurement_screen.dart';
 import '../farmer_dashboard_screen/farm_performance_overview.dart';

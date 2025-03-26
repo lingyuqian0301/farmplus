@@ -12,6 +12,6 @@ class Crop {
     required this.location,
     required this.pricePerKg,
     required this.availableKg,
-    required this.imageUrl,
+    this.imageUrl = '',
   });
 }

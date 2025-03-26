@@ -18,6 +18,47 @@ class CropListItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Add image placeholder at the top
+          crop.imageUrl.isEmpty
+              ? Container(
+                  width: double.infinity,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.image_outlined,
+                      color: Colors.grey,
+                      size: 50,
+                    ),
+                  ),
+                )
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    crop.imageUrl,
+                    width: double.infinity,
+                    height: 180,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: double.infinity,
+                        height: 180,
+                        color: Colors.grey[300],
+                        child: const Center(
+                          child: Icon(
+                            Icons.broken_image_outlined,
+                            color: Colors.grey,
+                            size: 50,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -29,7 +70,7 @@ class CropListItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '\RM${crop.pricePerKg}/kg',
+                'RM${crop.pricePerKg}/kg',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.green,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myapp/screens/crop_analysis.dart';
+import 'package:myapp/screens/crop_analysis/crop_analysis.dart';
 
 // Use relative path to screens directory
 import 'screens/welcome_screen/welcome_screen.dart';
