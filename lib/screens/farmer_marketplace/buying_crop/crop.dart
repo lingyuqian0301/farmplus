@@ -4,7 +4,7 @@ class Crop {
   final String location;
   final double pricePerKg;
   final int availableKg;
-  final String imageUrl;
+  final String imageUrl; // Add this field
 
   Crop({
     required this.name,
@@ -12,6 +12,6 @@ class Crop {
     required this.location,
     required this.pricePerKg,
     required this.availableKg,
-    this.imageUrl = '',
+    required this.imageUrl, // Ensure this is passed
   });
 }

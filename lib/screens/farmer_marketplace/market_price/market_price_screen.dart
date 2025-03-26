@@ -27,6 +27,8 @@ class FarmFinancialMarketPrice extends StatelessWidget {
     CropPrice(name: 'Millet', price: 4.1),
   ];
 
+  FarmFinancialMarketPrice({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +86,7 @@ class FarmFinancialMarketPrice extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       trailing: Text(
-                        '\RM${crop.price} ${crop.unit}',
+                        'RM${crop.price} ${crop.unit}',
                         style: TextStyle(
                           color: Colors.green[700],
                           fontWeight: FontWeight.bold,

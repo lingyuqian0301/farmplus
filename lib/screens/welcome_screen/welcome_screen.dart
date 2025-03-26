@@ -17,11 +17,11 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: const [0.196, 0.451],
+            stops: [0.196, 0.451],
             colors: [
               AppColors.gradientStart,
               AppColors.gradientEnd,
@@ -68,10 +68,10 @@ class WelcomeScreen extends StatelessWidget {
                               color: const Color.fromARGB(255, 30, 129, 15), // main fill color
                               // Add a drop shadow for a “3D” look
                               shadows: [
-                                Shadow(
-                                  offset: const Offset(2, 2),  // how far the shadow is
+                                const Shadow(
+                                  offset: Offset(2, 2),  // how far the shadow is
                                   blurRadius: 6,               // how soft the shadow is
-                                  color: const Color.fromARGB(95, 255, 254, 254),       // shadow color
+                                  color: Color.fromARGB(95, 255, 254, 254),       // shadow color
                                 ),
                               ],
                             ),

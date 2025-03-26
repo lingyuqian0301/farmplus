@@ -149,9 +149,9 @@ class FinancialAnalysisCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       padding: const EdgeInsets.all(4),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           _PeriodButton(label: 'Month', isSelected: true),
           SizedBox(width: 4),
           _PeriodButton(label: 'Year', isSelected: false),

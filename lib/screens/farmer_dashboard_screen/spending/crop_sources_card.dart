@@ -31,26 +31,26 @@ class CropSourcesCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          _CropSourceItem(
-            color: const Color(0xFF4318D1),
+          const _CropSourceItem(
+            color: Color(0xFF4318D1),
             name: 'rice',
             company: 'Asian Grains Co',
           ),
           const SizedBox(height: 16),
-          _CropSourceItem(
-            color: const Color(0xFFFFB800),
+          const _CropSourceItem(
+            color: Color(0xFFFFB800),
             name: 'corn',
             company: 'Midwest Seeds Ltd',
           ),
           const SizedBox(height: 16),
-          _CropSourceItem(
-            color: const Color(0xFF00B37E),
+          const _CropSourceItem(
+            color: Color(0xFF00B37E),
             name: 'wheat',
             company: 'Golden Fields Inc',
           ),
           const SizedBox(height: 16),
-          _CropSourceItem(
-            color: const Color(0xFFFF6B6B),
+          const _CropSourceItem(
+            color: Color(0xFFFF6B6B),
             name: 'soybeans',
             company: 'Green Valley Farms',
           ),
