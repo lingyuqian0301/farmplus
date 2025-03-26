@@ -1,4 +1,8 @@
-## teammember introduction
+## Teammember introduction
+Liaw Hang Sheng: Project Manager, Flutter developer, Business developer
+Neo Zheng weng: Flutter developer, Business developer
+Lim Yu Qian:
+Lu Jia Chang:
 
 
 ## Introduction: 
