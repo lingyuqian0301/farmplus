@@ -366,6 +366,116 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     );
   }
 
+  Widget _buildSellingDataContent() {
+  return Container(
+    padding: const EdgeInsets.all(24),
+    decoration: BoxDecoration(
+      color: const Color(0xFFFFFFF6),
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.08),
+          offset: const Offset(0, 2),
+          blurRadius: 8,
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Sell Your Farm Data',
+          style: TextStyle(
+            color: Color(0xFF334155),
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 16),
+        TextField(
+          decoration: InputDecoration(
+            hintText: 'Search available data types...',
+            prefixIcon: const Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFFCBD5E1),
+                width: 1,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFFCBD5E1),
+                width: 1,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(
+                color: Color(0xFF34A853),
+                width: 1.5,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        Expanded(
+          child: ListView(
+            children: [
+              _buildDataTypeItem('Crop Yield Data', 'Historical yield information', 25.50),
+              _buildDataTypeItem('Soil Health Metrics', 'Nutrient levels and composition', 40.75),
+              _buildDataTypeItem('Weather Patterns', 'Historical climate data', 35.20),
+              _buildDataTypeItem('Pest Infestation Records', 'Crop disease and pest tracking', 30.00),
+              _buildDataTypeItem('Irrigation Usage', 'Water consumption and efficiency', 22.85),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+// Helper method to create data type list items
+Widget _buildDataTypeItem(String title, String description, double price) {
+  return Container(
+    margin: const EdgeInsets.symmetric(vertical: 8),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(8),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          offset: const Offset(0, 2),
+          blurRadius: 4,
+        ),
+      ],
+    ),
+    child: ListTile(
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w500,
+          color: Color(0xFF334155),
+        ),
+      ),
+      subtitle: Text(
+        description,
+        style: TextStyle(
+          color: Colors.grey[600],
+          fontSize: 12,
+        ),
+      ),
+      trailing: Text(
+        '\RM$price',
+        style: TextStyle(
+          color: Colors.green[700],
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    ),
+  );
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -386,7 +496,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                 children: [
                   const SizedBox(height: 40),
                   const Text(
-                    'Farm Financial Services',
+                    'Farm Marketplace',
                     style: TextStyle(
                       color: Color(0xFF010102),
                       fontSize: 24,
@@ -446,14 +556,16 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
                   ),
                   const SizedBox(height: 24),
                   Expanded(
-                    child: _selectedTabIndex == 0
-                        ? _buildSellingCropsContent()
-                        : _selectedTabIndex == 1
-                            ? _buildBuyingCropsContent()
-                            : _selectedTabIndex == 3
-                                ? _buildMarketPriceContent()
-                                : _buildPlaceholderContent(_tabTitles[_selectedTabIndex]),
-                  ),
+                  child: _selectedTabIndex == 0
+                      ? _buildSellingCropsContent()
+                      : _selectedTabIndex == 1
+                          ? _buildBuyingCropsContent()
+                          : _selectedTabIndex == 2
+                              ? _buildSellingDataContent()
+                              : _selectedTabIndex == 3
+                                  ? _buildMarketPriceContent()
+                                  : _buildPlaceholderContent(_tabTitles[_selectedTabIndex]),
+                ),
                 ],
               ),
             ),
