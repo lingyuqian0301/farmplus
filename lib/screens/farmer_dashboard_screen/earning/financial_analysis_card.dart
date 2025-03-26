@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'dart:math' as math;
 
@@ -65,7 +64,7 @@ class FinancialAnalysisCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildHeaderText(isMediumScreen),
+          // _buildHeaderText(isMediumScreen),
           const SizedBox(height: 24),
           _buildPieChart(),
           const SizedBox(height: 16),
@@ -131,17 +130,17 @@ class FinancialAnalysisCard extends StatelessWidget {
   }
 
   // Keep the existing header and period selector methods
-  Widget _buildHeaderText(bool isMediumScreen) {
-    return Text(
-      'Crop Financial Analysis',
-      style: GoogleFonts.inter(
-        fontSize: isMediumScreen ? 20 : 18,
-        fontWeight: FontWeight.w700,
-        color: const Color(0xFF334155),
-      ),
-      textAlign: TextAlign.left,
-    );
-  }
+  // Widget _buildHeaderText(bool isMediumScreen) {
+  //   return Text(
+  //     'Crop Financial Analysis',
+  //     style: GoogleFonts.inter(
+  //       fontSize: isMediumScreen ? 20 : 18,
+  //       fontWeight: FontWeight.w700,
+  //       color: const Color(0xFF334155),
+  //     ),
+  //     textAlign: TextAlign.left,
+  //   );
+  // }
 
   Widget _buildPeriodSelector() {
     return Container(

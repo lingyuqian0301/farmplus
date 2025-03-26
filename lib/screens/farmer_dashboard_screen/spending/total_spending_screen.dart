@@ -4,7 +4,7 @@ import 'package:myapp/components/navbar.dart';
 import 'financial_analysis_card.dart';
 import 'crop_sources_card.dart';
 import 'spending_card.dart';
-
+import '../calendar/calendar_page.dart';
 class TotalSpendingScreen extends StatelessWidget {
   const TotalSpendingScreen({Key? key}) : super(key: key);
 
@@ -46,7 +46,14 @@ class TotalSpendingScreen extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width > 640 ? 190 : double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Replace 'SomeCalendarScreen' with your actual screen or route
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const CalendarPage(
+                        )),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF4B9B28),
                       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/components/navbar.dart';
 import 'custom_input_field.dart';
 import 'social_login_button.dart';
 import '../homescreen/home_screen.dart';
@@ -228,22 +229,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-
-                  // Home Icon
-                  // Container(
-                  //   margin: const EdgeInsets.only(top: 24),
-                  //   child: Icon(
-                  //     Icons.home_outlined,
-                  //     size: 24,
-                  //     color: Colors.grey[400],
-                  //   ),
-                  // ),
                 ],
               ),
             ),
           ),
         ),
       ),
+      bottomNavigationBar: const Navbar(index: 1),
     );
   }
 }

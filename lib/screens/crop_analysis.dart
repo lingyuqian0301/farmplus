@@ -160,12 +160,12 @@ class _CropAnalysisPageState extends State<CropAnalysisPage> {
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     child: Column(
                       children: [
-                        const Text(
-                          "Briefly describe your plant’s issue and let’s help you analyze!",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, color: Colors.black),
-                        ),
-                        const SizedBox(height: 10),
+                        // const Text(
+                        //   "",
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(fontSize: 14, color: Colors.black),
+                        // ),
+                        // const SizedBox(height: 10),
                         TextField(
                           controller: _descriptionController,
                           decoration: const InputDecoration(
