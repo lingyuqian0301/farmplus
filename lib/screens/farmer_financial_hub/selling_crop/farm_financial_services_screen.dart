@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:myapp/components/navbar.dart';
 import '../buying_crop/crop.dart';
 import '../buying_crop/crop_list_items.dart';
@@ -16,10 +18,20 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
   final TextEditingController weightController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
 
-  // Currently selected tab
   int _selectedTabIndex = 0;
+  File? _selectedImage;
 
-  // List of tab titles
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _selectedImage = File(image.path);
+      });
+    }
+  }
+
   final List<String> _tabTitles = [
     'Selling Crops',
     'Buying Crops',
@@ -27,7 +39,6 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     'Market Price',
   ];
 
-  // Crops for buying crops screen
   final List<Crop> crops = [
     Crop(
       name: 'Organic Corn',
@@ -55,7 +66,6 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     ),
   ];
 
-  // Market prices list
   final List<MarketPrice> marketPrices = [
     MarketPrice(name: 'Corn', price: 4.5),
     MarketPrice(name: 'Wheat', price: 5.2),
@@ -75,7 +85,6 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     super.dispose();
   }
 
-  // Method to handle tab selection
   void _onTabSelected(int index) {
     setState(() {
       _selectedTabIndex = index;
@@ -83,82 +92,124 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
   }
 
   // Build selling crops content
-  Widget _buildSellingCropsContent() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFFFF6),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            offset: const Offset(0, 2),
-            blurRadius: 8,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'List Your Crops',
-            style: TextStyle(
-              color: Color(0xFF334155),
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-              height: 1.5,
+   Widget _buildSellingCropsContent() {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFFF6),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              offset: const Offset(0, 2),
+              blurRadius: 8,
             ),
-          ),
-          const SizedBox(height: 16),
-          CustomInputField(
-            controller: cropTypeController,
-            hintText: 'Crop Type',
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              SizedBox(
-                width: 154,
-                child: CustomInputField(
-                  controller: weightController,
-                  hintText: 'Weight (kg)',
-                  keyboardType: TextInputType.number,
-                ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'List Your Crops',
+              style: TextStyle(
+                color: Color(0xFF334155),
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                height: 1.5,
               ),
-              const SizedBox(width: 9),
-              Expanded(
-                child: CustomInputField(
-                  controller: priceController,
-                  hintText: 'Price per kg',
-                  keyboardType: TextInputType.number,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: ElevatedButton(
-              onPressed: _addListing,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF34A853),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-              child: const Text(
-                'Add Listing',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  height: 1.5,
+            ),
+            const SizedBox(height: 16),
+            Center(
+              child: GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey[400]!),
+                  ),
+                  child: _selectedImage != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.file(
+                            _selectedImage!,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.cloud_upload,
+                              size: 50,
+                              color: Colors.grey[600],
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Upload Crop Image',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                 ),
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 16),
+            CustomInputField(
+              controller: cropTypeController,
+              hintText: 'Crop Type',
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomInputField(
+                    controller: weightController,
+                    hintText: 'Weight (kg)',
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+                const SizedBox(width: 9),
+                Expanded(
+                  child: CustomInputField(
+                    controller: priceController,
+                    hintText: 'Price per kg',
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: ElevatedButton(
+                onPressed: _addListing,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF34A853),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Add Listing',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    height: 1.5,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -218,7 +269,7 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     );
   }
 
-    Widget _buildMarketPriceContent() {
+  Widget _buildMarketPriceContent() {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -418,11 +469,12 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
     // Validate inputs
     if (cropTypeController.text.isEmpty ||
         weightController.text.isEmpty ||
-        priceController.text.isEmpty) {
+        priceController.text.isEmpty ||
+        _selectedImage == null) {
       // Show an error message
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Please fill in all fields'),
+          content: Text('Please fill in all fields and upload an image'),
           backgroundColor: Colors.red,
         ),
       );
@@ -438,10 +490,13 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
       ),
     );
 
-    // Clear the input fields
+    // Clear the input fields and image
     cropTypeController.clear();
     weightController.clear();
     priceController.clear();
+    setState(() {
+      _selectedImage = null;
+    });
   }
 }
 
