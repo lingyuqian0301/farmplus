@@ -196,13 +196,6 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 
   // 4) Example home icon at the bottom
-  Widget _buildHomeIcon() {
-    return Icon(
-      Icons.home_outlined,
-      size: 28,
-      color: Colors.grey[600],
-    );
-  }
 
   // Logic: previous/next month
   void _goToPreviousMonth() {

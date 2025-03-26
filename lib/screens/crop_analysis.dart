@@ -110,35 +110,37 @@ class _CropAnalysisPageState extends State<CropAnalysisPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              onPressed: () => _pickImage(ImageSource.camera),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF166534),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 20),
-                              ),
-                              child: const Text(
-                                "Take Photo",
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.white),
+                            SizedBox(
+                              width: 150, // Set a fixed width
+                              child: ElevatedButton(
+                                onPressed: () => _pickImage(ImageSource.camera),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF166534),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                ),
+                                child: const Text(
+                                  "Take Photo",
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                ),
                               ),
                             ),
                             const SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () => _pickImage(ImageSource.gallery),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF218838),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 20),
-                              ),
-                              child: const Text(
-                                "Upload from Gallery",
-                                style:
-                                    TextStyle(fontSize: 16, color: Colors.white),
+                            SizedBox(
+                              width: 150, // Same fixed width for the second button
+                              child: ElevatedButton(
+                                onPressed: () => _pickImage(ImageSource.gallery),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF218838),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  padding: const EdgeInsets.symmetric(vertical: 12),
+                                ),
+                                child: const Text(
+                                  "Upload",
+                                  style: TextStyle(fontSize: 16, color: Colors.white),
+                                ),
                               ),
                             ),
                           ],
@@ -149,7 +151,7 @@ class _CropAnalysisPageState extends State<CropAnalysisPage> {
                 ),
                 const SizedBox(height: 20),
                 Card(
-                  color: const Color(0xFFCBEFD1),
+                  color: Colors.white,
                   elevation: 2,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)),
