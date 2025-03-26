@@ -71,15 +71,9 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/screen/facebook.png
-    - assets/screen/farmer-crop-analysis.png
-    - assets/screen/farmer-holding-money.png
-    - assets/screen/google.png
-    - assets/screen/homepage-farmer.png
-    - assets/screen/logo.png
-    - assets/screen/money-icon.png
-    - assets/screen/welcome-page-center-image.png
-    - assets/screen/whatsapp.png
+    - assets/screen/
+    - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

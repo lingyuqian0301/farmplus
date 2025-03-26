@@ -39,8 +39,8 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
           child: Column(
             children: [
               // AppBar-like title
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
                   'Farming Support Hub',
                   style: TextStyle(
@@ -131,17 +131,19 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
   Widget _buildTutorialContent() {
     return ListView(
       shrinkWrap: true,
-      children: [
+      children: const [
         ContentCard(
           title: 'Tractor Maintenance 101',
           description: 'Learn essential maintenance tips for your farming equipment',
           showIcon: false,
+          imagePath: 'assets/images/tractor-maintain.jpg', // Add image
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         ContentCard(
           title: 'Irrigation Systems Setup',
           description: 'Step-by-step guide to modern irrigation installation',
           showIcon: false,
+          imagePath: 'assets/images/irrigation.png',
         ),
       ],
     );
@@ -150,17 +152,19 @@ class _FarmingSupportScreenState extends State<FarmingSupportScreen> {
   Widget _buildEquipmentContent() {
     return ListView(
       shrinkWrap: true,
-      children: [
+      children: const [
         ContentCard(
           title: 'Equipment Rentals',
           description: 'Find nearby agricultural machinery rentals',
           showIcon: false,
+          imagePath: 'assets/images/rental.png',
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         ContentCard(
           title: 'Tool Suppliers',
           description: 'Verified suppliers in your area',
           showIcon: false,
+          imagePath: 'assets/images/tools.jpg',
         ),
       ],
     );

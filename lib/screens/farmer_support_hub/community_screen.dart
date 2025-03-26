@@ -18,15 +18,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Community Tabs
         _buildCommunityTabs(),
-        
         const SizedBox(height: 16),
-        
-        // Content based on selected tab
-        Expanded(
-          child: _buildTabContent(),
-        ),
+        Expanded(child: _buildTabContent()),
       ],
     );
   }
@@ -44,7 +38,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   Widget _buildTabItem(String text, CommunityTab tab) {
     final isSelected = _selectedTab == tab;
-    
     return GestureDetector(
       onTap: () => setState(() => _selectedTab = tab),
       child: Text(
@@ -56,18 +49,14 @@ class _CommunityScreenState extends State<CommunityScreen> {
           height: 1.615,
           decoration: isSelected ? TextDecoration.underline : null,
         ),
-        textAlign: TextAlign.center,
       ),
     );
   }
 
   Widget _buildTabContent() {
-    switch (_selectedTab) {
-      case CommunityTab.groups:
-        return _buildGroupsContent();
-      case CommunityTab.upload:
-        return _buildUploadContent();
-    }
+    return _selectedTab == CommunityTab.groups
+        ? _buildGroupsContent()
+        : _buildUploadContent();
   }
 
   Widget _buildGroupsContent() {
@@ -76,19 +65,19 @@ class _CommunityScreenState extends State<CommunityScreen> {
         _buildGroupCard(
           title: 'Organic Farming',
           members: '1234 members',
-          imagePlaceholder: '300 × 200',
+          imagePath: 'assets/images/organic.jpg',
         ),
         const SizedBox(height: 16),
         _buildGroupCard(
           title: 'Sustainable Agriculture',
           members: '656 members',
-          imagePlaceholder: '300 × 200',
+          imagePath: 'assets/images/sustainable_agriculture.png',
         ),
         const SizedBox(height: 16),
         _buildGroupCard(
           title: 'Urban Farming',
           members: '97 members',
-          imagePlaceholder: '300 × 200',
+          imagePath: 'assets/images/urban_farming.jpg',
         ),
       ],
     );
@@ -97,58 +86,30 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget _buildGroupCard({
     required String title,
     required String members,
-    required String imagePlaceholder,
+    required String imagePath,
   }) {
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 200,
-            color: Colors.grey[300],
-            child: Center(
-              child: Text(
-                imagePlaceholder,
-                style: TextStyle(color: Colors.grey[600]),
-              ),
-            ),
-          ),
+          Image.asset(imagePath, width: double.infinity, height: 200, fit: BoxFit.cover),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
+                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
                 const SizedBox(height: 8),
-                Text(
-                  members,
-                  style: TextStyle(
-                    color: AppColors.textSecondary,
-                  ),
-                ),
+                Text(members, style: const TextStyle(color: AppColors.textSecondary)),
                 const SizedBox(height: 12),
                 ElevatedButton(
-                  onPressed: () {
-                    // TODO: Implement join group functionality
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.buttonBackground,
                     foregroundColor: AppColors.buttonText,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   ),
                   child: const Text('Join Group'),
                 ),
@@ -169,18 +130,15 @@ class _CommunityScreenState extends State<CommunityScreen> {
             controller: _postController,
             decoration: InputDecoration(
               hintText: 'Write your post...',
-              hintStyle: TextStyle(color: AppColors.textSecondary),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.textSecondary),
               ),
               suffixIcon: IconButton(
-                icon: Icon(Icons.send, color: AppColors.buttonBackground),
+                icon: const Icon(Icons.send, color: AppColors.buttonBackground),
                 onPressed: _submitPost,
               ),
             ),
             maxLines: 4,
-            style: TextStyle(color: AppColors.textPrimary),
           ),
         ),
         const SizedBox(height: 16),
@@ -190,14 +148,14 @@ class _CommunityScreenState extends State<CommunityScreen> {
               _buildPostCard(
                 username: 'John Farmer',
                 content: 'Just harvested my first organic crops',
-                imagePlaceholder: '400 × 300',
+                imagePath: 'assets/images/harvest.jpg',
                 likes: 45,
               ),
               const SizedBox(height: 16),
               _buildPostCard(
                 username: 'Sarah Green',
                 content: 'New irrigation system working great',
-                imagePlaceholder: '400 × 300',
+                imagePath: 'assets/images/new_irrigation.jpg',
                 likes: 32,
               ),
             ],
@@ -210,59 +168,35 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget _buildPostCard({
     required String username,
     required String content,
-    required String imagePlaceholder,
+    required String imagePath,
     required int likes,
   }) {
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.grey[300],
-              child: Text(
-                username[0],
-                style: TextStyle(color: AppColors.textPrimary),
-              ),
+              child: Text(username[0], style: const TextStyle(color: AppColors.textPrimary)),
             ),
-            title: Text(
-              username,
-              style: TextStyle(color: AppColors.textPrimary),
-            ),
+            title: Text(username, style: const TextStyle(color: AppColors.textPrimary)),
           ),
-          Container(
-            width: double.infinity,
-            height: 300,
-            color: Colors.grey[300],
-            child: Center(
-              child: Text(
-                imagePlaceholder,
-                style: TextStyle(color: Colors.grey[600]),
-              ),
-            ),
-          ),
+          Image.asset(imagePath, width: double.infinity, height: 300, fit: BoxFit.cover),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  content,
-                  style: TextStyle(color: AppColors.textPrimary),
-                ),
+                Text(content, style: const TextStyle(color: AppColors.textPrimary)),
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    Icon(Icons.favorite_border, size: 20, color: AppColors.textSecondary),
+                    const Icon(Icons.favorite_border, size: 20, color: AppColors.textSecondary),
                     const SizedBox(width: 4),
-                    Text(
-                      '$likes likes',
-                      style: TextStyle(color: AppColors.textSecondary),
-                    ),
+                    Text('$likes likes', style: const TextStyle(color: AppColors.textSecondary)),
                   ],
                 ),
               ],
@@ -275,16 +209,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   void _submitPost() {
     if (_postController.text.isNotEmpty) {
-      // TODO: Implement post submission logic
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Post submitted',
-            style: TextStyle(color: AppColors.buttonText),
-          ),
-          backgroundColor: AppColors.buttonBackground,
-        ),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Post submitted')));
       _postController.clear();
     }
   }

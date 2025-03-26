@@ -135,10 +135,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: const Color.fromARGB(255, 30, 129, 15), // main fill color
                               // Add a drop shadow for a “3D” look
                               shadows: [
-                                Shadow(
-                                  offset: const Offset(2, 2),  // how far the shadow is
+                                const Shadow(
+                                  offset: Offset(2, 2),  // how far the shadow is
                                   blurRadius: 6,               // how soft the shadow is
-                                  color: const Color.fromARGB(95, 255, 254, 254),       // shadow color
+                                  color: Color.fromARGB(95, 255, 254, 254),       // shadow color
                                 ),
                               ],
                             ),
@@ -213,31 +213,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SocialLoginButton(
-                        icon: 'assets/screen/google.png',
+                        icon: 'assets/icons/2993685_brand_brands_google_logo_logos_icon.svg',
                         onPressed: () {},
                       ),
                       const SizedBox(width: 16),
                       SocialLoginButton(
-                        icon: 'assets/screen/whatsapp.png',
+                        icon: 'assets/icons/1298775_whatsapp_chat_sms_social media_talk_icon.svg',
                         onPressed: () {},
                       ),
                       const SizedBox(width: 16),
                       SocialLoginButton(
-                        icon: 'assets/screen/facebook.png',
+                        icon: 'assets/icons/317727_facebook_social media_social_icon.svg',
                         onPressed: () {},
                       ),
                     ],
                   ),
 
                   // Home Icon
-                  Container(
-                    margin: const EdgeInsets.only(top: 24),
-                    child: Icon(
-                      Icons.home_outlined,
-                      size: 24,
-                      color: Colors.grey[400],
-                    ),
-                  ),
+                  // Container(
+                  //   margin: const EdgeInsets.only(top: 24),
+                  //   child: Icon(
+                  //     Icons.home_outlined,
+                  //     size: 24,
+                  //     color: Colors.grey[400],
+                  //   ),
+                  // ),
                 ],
               ),
             ),

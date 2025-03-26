@@ -5,12 +5,14 @@ class ContentCard extends StatelessWidget {
   final String title;
   final String description;
   final bool showIcon;
+  final String imagePath; // Add image path
 
   const ContentCard({
     Key? key,
     required this.title,
     required this.description,
     required this.showIcon,
+    required this.imagePath, // Accept image path
   }) : super(key: key);
 
   @override
@@ -25,11 +27,7 @@ class ContentCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 213,
-            color: const Color(0xFFE0E0E0),
-          ),
+          _buildImage(), // Use the image widget
           Padding(
             padding: const EdgeInsets.all(16),
             child: showIcon
@@ -47,14 +45,27 @@ class ContentCard extends StatelessWidget {
                           height: 21,
                         ),
                       ),
-                      Expanded(
-                        child: _buildContent(),
-                      ),
+                      Expanded(child: _buildContent()),
                     ],
                   )
                 : _buildContent(),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Builds the image section of the card
+  Widget _buildImage() {
+    return Container(
+      width: double.infinity,
+      height: 213,
+      decoration: BoxDecoration(
+        color: const Color(0xFFE0E0E0),
+        image: DecorationImage(
+          image: AssetImage(imagePath), // Load image
+          fit: BoxFit.cover, // Adjust image fit
+        ),
       ),
     );
   }
