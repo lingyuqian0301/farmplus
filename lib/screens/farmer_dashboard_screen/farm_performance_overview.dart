@@ -31,13 +31,14 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
   void _initializePerformanceData() {
     final now = DateTime.now();
     _performanceData.addAll([
+      // dummny data
       // PerformanceData(earnings: 35000, spending: 12500, date: now.subtract(const Duration(days: 30))),
       // PerformanceData(earnings: 32000, spending: 11000, date: now.subtract(const Duration(days: 25))),
       // PerformanceData(earnings: 38000, spending: 13500, date: now.subtract(const Duration(days: 20))),
       // PerformanceData(earnings: 34000, spending: 12000, date: now.subtract(const Duration(days: 15))),
       // PerformanceData(earnings: 36000, spending: 13000, date: now.subtract(const Duration(days: 10))),
-      // PerformanceData(earnings: 35000, spending: 12500, date: now.subtract(const Duration(days: 5))),
-      PerformanceData(earnings: 37000, spending: 13200, date: now),
+      PerformanceData(earnings: 5000, spending: 3890, date: now.subtract(const Duration(days: 30))),
+      PerformanceData(earnings: 0, spending: 0, date: now),
     ]);
   }
 
@@ -62,7 +63,7 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
       }
     });
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,21 +147,21 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
           const SizedBox(height: 16),
           PerformanceStatCard(
             title: 'Total Spending',
-            value: '\$${_totalSpending.toStringAsFixed(0)}',
+            value: '\RM${_totalSpending.toStringAsFixed(0)}',
             subtitle: 'this month',
             onTap: () => _navigateToSpendingDetails(),
           ),
           const SizedBox(height: 16),
           PerformanceStatCard(
             title: 'Total Earnings',
-            value: '\$${_totalEarnings.toStringAsFixed(0)}',
+            value: '\RM${_totalEarnings.toStringAsFixed(0)}',
             subtitle: 'this month',
             onTap: () => _navigateToEarningsDetails(),
           ),
           const SizedBox(height: 16),
           PerformanceStatCard(
             title: 'Active Loans',
-            value: '\$8,500',
+            value: '\RM8,500',
             subtitle: 'outstanding',
             onTap: () => _navigateToLoansDetails(),
           ),

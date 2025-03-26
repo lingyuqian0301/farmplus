@@ -52,7 +52,7 @@ class _DataInputFormState extends State<DataInputForm> {
               controller: widget.earningsController,
               decoration: InputDecoration(
                 labelText: 'Earnings',
-                prefixText: '\$',
+                prefixText: '\RM',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -73,7 +73,7 @@ class _DataInputFormState extends State<DataInputForm> {
               controller: widget.spendingController,
               decoration: InputDecoration(
                 labelText: 'Spending',
-                prefixText: '\$',
+                prefixText: '\RM',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

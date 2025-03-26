@@ -42,16 +42,17 @@ class PerformanceGraph extends StatelessWidget {
                     showTitles: true,
                     interval: _getYInterval(),
                     getTitlesWidget: (value, meta) => Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
+                      padding: const EdgeInsets.only(right: 12.0),
                       child: Text(
-                        '\$${value.toInt()}',
+                        '\RM${value.toInt()}',
                         style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 10,
                         ),
+                        textAlign: TextAlign.right,
                       ),
                     ),
-                    reservedSize: 40,
+                    reservedSize: 70,
                   ),
                 ),
                 bottomTitles: AxisTitles(
@@ -105,8 +106,8 @@ class PerformanceGraph extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: isEarnings 
-                                ? 'Earnings: \$${spot.y.toInt()}' 
-                                : 'Spending: \$${spot.y.toInt()}',
+                                ? 'Earnings: \RM${spot.y.toInt()}' 
+                                : 'Spending: \RM${spot.y.toInt()}',
                             style: TextStyle(
                               color: isEarnings ? _earningsColor() : _spendingColor(),
                             ),
