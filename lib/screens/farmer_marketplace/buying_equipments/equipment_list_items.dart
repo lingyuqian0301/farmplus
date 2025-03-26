@@ -23,7 +23,7 @@ class EquipmentListItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildImage(equipment.imageUrl), // ✅ Dynamically load image
+          _buildImage(equipment.imageUrl),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -60,6 +60,28 @@ class EquipmentListItem extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.green[700],
                       fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  // New Contact Seller Button
+                  ElevatedButton(
+                    onPressed: () {
+                      // TODO: Implement contact seller logic
+                      // Currently, this button does nothing when clicked
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.green,
+                      minimumSize: const Size(double.infinity, 40),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      'Contact Seller',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

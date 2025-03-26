@@ -534,57 +534,6 @@ class _FarmFinancialServicesScreenState extends State<FarmFinancialServicesScree
 }
 
   // Helper method to create equipment list items
-  Widget _buildEquipmentListItem(Equipment equipment) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            offset: const Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
-      ),
-      child: ListTile(
-        title: Text(
-          equipment.name,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF334155),
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${equipment.brand} - ${equipment.model}',
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 12,
-              ),
-            ),
-            Text(
-              '${equipment.availableDays} days available',
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 12,
-              ),
-            ),
-          ],
-        ),
-        trailing: Text(
-          'RM${equipment.pricePerDay} per day',
-          style: TextStyle(
-            color: Colors.green[700],
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
 
 // Helper method to create data type list items
 Widget _buildDataTypeItem(String title, String description, double price) {
