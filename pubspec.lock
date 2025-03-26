@@ -88,8 +88,8 @@ packages:
       sha256: cb6d7f03e1de671e34607e909a7213e31d7752be4fb66a86d29fe1eb14bfb5cf
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
-    cloud_firestore:
+    version: "1.1.1"
+  cloud_firestore:
     dependency: "direct main"
     description:
       name: cloud_firestore
@@ -314,10 +314,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "5a1e6fb2c0561958d7e4c33574674bda7b77caaca7a33b758876956f2902eea3"
+      sha256: "1c2b787f99bdca1f3718543f81d38aa1b124817dfeb9fb196201bea85b6134bf"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.27"
+    version: "2.0.26"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -758,5 +758,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.7.0-0 <4.0.0"
-  flutter: ">=3.27.0"
+  dart: ">=3.5.0 <4.0.0"
+  flutter: ">=3.24.0"
