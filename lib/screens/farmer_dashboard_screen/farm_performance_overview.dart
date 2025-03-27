@@ -35,8 +35,8 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
       // PerformanceData(earnings: 35000, spending: 12500, date: now.subtract(const Duration(days: 30))),
       // PerformanceData(earnings: 32000, spending: 11000, date: now.subtract(const Duration(days: 25))),
       // PerformanceData(earnings: 38000, spending: 13500, date: now.subtract(const Duration(days: 20))),
-      // PerformanceData(earnings: 34000, spending: 12000, date: now.subtract(const Duration(days: 15))),
-      // PerformanceData(earnings: 36000, spending: 13000, date: now.subtract(const Duration(days: 10))),
+      PerformanceData(earnings: 3000, spending: 2000, date: now.subtract(const Duration(days: 90))),
+      PerformanceData(earnings: 6000, spending: 3000, date: now.subtract(const Duration(days: 60))),
       PerformanceData(earnings: 5000, spending: 3890, date: now.subtract(const Duration(days: 30))),
       PerformanceData(earnings: 0, spending: 0, date: now),
     ]);
@@ -189,7 +189,10 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
     );
   }
 
-  void _navigateToYieldDetails() {}
+  void _navigateToYieldDetails() {
+    // Modify
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalYieldScreen()));
+  }
   
   void _navigateToSpendingDetails() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
@@ -199,7 +202,10 @@ class _FarmPerformanceOverviewState extends State<FarmPerformanceOverview> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalEarningScreen()));
   }
   
-  void _navigateToLoansDetails() {}
+  void _navigateToLoansDetails() {
+    // Modify
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TotalSpendingScreen()));
+  }
 
   @override
   void dispose() {
