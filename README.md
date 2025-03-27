@@ -1,4 +1,6 @@
-![Team Banner](./assets/readme_images/logo.png)
+<p align="center">
+  <img src="./assets/readme_images/logo.png" alt="Team Banner">
+</p>
 
 ## Teammember introduction
 1. **Liaw Hang Sheng:** Team Leader, Project Manager, Flutter developer, Business developer
@@ -76,13 +78,6 @@
 ## 🌍 Impact on SDGs  
 - **SDG 2.3**: Doubles productivity via precision farming tools.  
 - **SDG 2.4**: Promotes soil health and climate resilience.  
-
----
-
-## 📸 Screenshots (Placeholder)  
-| Crop Scanner | IoT Dashboard | Marketplace |  
-|--------------|---------------|-------------|  
-| ![Crop Scan]() | ![Dashboard]() | ![Market]() |  
 
 ---
 
