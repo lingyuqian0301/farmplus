@@ -82,7 +82,7 @@
 ---
 
 ## 📜 License  
-MIT License. Developed for the [Hackathon Name].  
+MIT License.  
 
 ---
 
