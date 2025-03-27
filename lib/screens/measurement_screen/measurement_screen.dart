@@ -1,5 +1,8 @@
+// measurement_screen.dart
 import 'package:flutter/material.dart';
 import 'package:myapp/components/navbar.dart';
+
+// Assuming you have these color and component files
 import 'measurement_color.dart';
 import 'measurement_card.dart';
 import 'status_indicator.dart';
@@ -51,10 +54,7 @@ class MeasurementsScreen extends StatelessWidget {
     );
   }
 
-  /// 1) Responsive Header:
-  ///    - On small screens, places "Current Measurements" on top,
-  ///      then "Live Data" + "Refresh" in a row below.
-  ///    - On larger screens, places everything in a single row.
+  /// Responsive Header for Measurements Screen
   Widget _buildHeader(BuildContext context) {
     final isSmallScreen = MediaQuery.of(context).size.width <= 640;
 
@@ -81,7 +81,12 @@ class MeasurementsScreen extends StatelessWidget {
                 label: 'Live Data',
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: Implement refresh logic
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Refreshing data...')),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.refreshButton,
                   padding: const EdgeInsets.symmetric(
@@ -126,7 +131,12 @@ class MeasurementsScreen extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: Implement refresh logic
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Refreshing data...')),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.refreshButton,
                   padding: const EdgeInsets.symmetric(
@@ -152,11 +162,11 @@ class MeasurementsScreen extends StatelessWidget {
     }
   }
 
-  /// 2) 2×2 Grid of Measurement Cards + Remaining Cards
+  /// Build Measurements Section
   Widget _buildMeasurements() {
     return Column(
       children: [
-        // A 2×2 grid for the four measurement cards
+        // 2×2 Grid of Measurement Cards
         GridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 24,
@@ -192,53 +202,28 @@ class MeasurementsScreen extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // The rest of your cards below the 2×2 grid
+        // Weather Forecast Card
         _buildStandardCard(
           title: 'Weather Forecast',
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: AppColors.placeholderGrey,
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
+          child: _buildWeatherForecast(),
         ),
         const SizedBox(height: 24),
+
+        // Alerts & Notifications Card
         _buildStandardCard(
           title: 'Alerts & Notifications',
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: AppColors.placeholderGrey,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF0EA5E9),
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ),
+          child: _buildNotifications(),
         ),
         const SizedBox(height: 24),
+
+        // Trend Analysis Card
         _buildStandardCard(
           title: 'Trend Analysis',
-          child: Container(
-            height: 300,
-            decoration: BoxDecoration(
-              color: AppColors.placeholderGrey,
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
+          child: _buildTrendAnalysis(),
         ),
         const SizedBox(height: 24),
+
+        // Recommendations Card
         _buildStandardCard(
           title: 'Recommendations',
           child: Column(
@@ -259,7 +244,78 @@ class MeasurementsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStandardCard({required String title, required Widget child}) {
+  /// Weather Forecast Widget
+  Widget _buildWeatherForecast() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildWeatherForecastItem('Today', Icons.wb_sunny, '78°F', 'Clear'),
+            _buildWeatherForecastItem('Tomorrow', Icons.cloud, '65°F', 'Cloudy'),
+            _buildWeatherForecastItem('Day After', Icons.water, '60°F', 'Rain'),
+          ],
+        ),
+        const SizedBox(height: 12),
+        const Text(
+          'Expected Precipitation: 0.5 inches',
+          style: TextStyle(
+            color: AppColors.secondaryText,
+            fontSize: 14,
+            fontFamily: 'Inter',
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Notifications Widget
+  Widget _buildNotifications() {
+    return Column(
+      children: [
+        _buildNotificationItem(
+          color: const Color(0xFF0EA5E9),
+          title: 'Soil Moisture Alert',
+          description: 'Lower field requires irrigation',
+          time: '2 hrs ago',
+        ),
+        const SizedBox(height: 12),
+        _buildNotificationItem(
+          color: const Color(0xFFF97316),
+          title: 'Equipment Maintenance',
+          description: 'Irrigation system check due',
+          time: '6 hrs ago',
+        ),
+        const SizedBox(height: 12),
+        _buildNotificationItem(
+          color: const Color(0xFF22C55E),
+          title: 'Crop Health',
+          description: 'Winter wheat growth on track',
+          time: '1 day ago',
+        ),
+      ],
+    );
+  }
+
+  /// Trend Analysis Widget
+  Widget _buildTrendAnalysis() {
+    return Column(
+      children: [
+        _buildTrendItem('Soil Moisture', '68%', '+2.3% this week'),
+        const SizedBox(height: 12),
+        _buildTrendItem('Temperature', '71°F', 'Stable'),
+        const SizedBox(height: 12),
+        _buildTrendItem('Nitrogen Levels', '88%', '-1.5% this week'),
+      ],
+    );
+  }
+
+  /// Standard Card Layout
+  Widget _buildStandardCard({
+    required String title, 
+    required Widget child,
+  }) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -294,6 +350,153 @@ class MeasurementsScreen extends StatelessWidget {
     );
   }
 
+  /// Weather Forecast Item
+  Widget _buildWeatherForecastItem(
+    String day, 
+    IconData icon, 
+    String temp, 
+    String condition,
+  ) {
+    return Column(
+      children: [
+        Icon(icon, color: AppColors.secondaryText, size: 32),
+        const SizedBox(height: 8),
+        Text(
+          day,
+          style: const TextStyle(
+            color: AppColors.secondaryText,
+            fontSize: 14,
+            fontFamily: 'Inter',
+          ),
+        ),
+        Text(
+          temp,
+          style: const TextStyle(
+            color: AppColors.darkText,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Inter',
+          ),
+        ),
+        Text(
+          condition,
+          style: const TextStyle(
+            color: AppColors.secondaryText,
+            fontSize: 12,
+            fontFamily: 'Inter',
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Notification Item
+  Widget _buildNotificationItem({
+    required Color color,
+    required String title,
+    required String description,
+    required String time,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.placeholderGrey,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 12,
+            height: 12,
+            decoration: BoxDecoration(
+              color: color,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: AppColors.darkText,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    color: AppColors.secondaryText,
+                    fontSize: 14,
+                    fontFamily: 'Inter',
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            time,
+            style: const TextStyle(
+              color: AppColors.secondaryText,
+              fontSize: 12,
+              fontFamily: 'Inter',
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Trend Item
+  Widget _buildTrendItem(String title, String value, String trend) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: AppColors.darkText,
+            fontSize: 16,
+            fontFamily: 'Inter',
+          ),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              value,
+              style: const TextStyle(
+                color: AppColors.darkText,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Inter',
+              ),
+            ),
+            Text(
+              trend,
+              style: TextStyle(
+                color: trend.contains('+') 
+                  ? Colors.green 
+                  : trend.contains('-') 
+                    ? Colors.red 
+                    : AppColors.secondaryText,
+                fontSize: 12,
+                fontFamily: 'Inter',
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// Recommendation Item
   Widget _buildRecommendationItem(String title, String description) {
     return Container(
       width: double.infinity,
